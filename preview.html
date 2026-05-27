@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Modo Atleta Completo</title>
+<style>
+body { font-family: Arial; margin:20px; background:#f4f6f9;}
+h1,h2,h3 { color:#1e3a8a;}
+.tabs { display:flex; margin-bottom:15px;}
+.tab { padding:10px; background:#ddd; margin-right:5px; cursor:pointer; border-radius:5px;}
+.tab.active { background:#1e3a8a; color:white;}
+.section { display:none; background:white; padding:15px; border-radius:10px;}
+.section.active { display:block;}
+label { display:block; margin:5px 0;}
+.progress-bar { height:20px; background:#22c55e; width:0%; color:white; text-align:center;}
+.timer { font-size:24px; margin-top:10px;}
+</style>
+</head>
+<body>
+
+<h1>🏆 Modo Atleta Completo</h1>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('tracking')">Tracking</div>
+  <div class="tab" onclick="showTab('gym')">Gym + Core</div>
+  <div class="tab" onclick="showTab('historial')">Historial</div>
+</div>
+
+<!-- TRACKING -->
+<div id="tracking" class="section active">
+<h2 id="dayTitle"></h2>
+
+<label><input type="checkbox" class="check"> Omega 3</label>
+<label><input type="checkbox" class="check"> Hialoflex</label>
+<label><input type="checkbox" class="check"> Creatina</label>
+<label><input type="checkbox" class="check"> Colágeno + Vitamina C</label>
+<label><input type="checkbox" class="check"> Entrenamiento</label>
+<label><input type="checkbox" class="check"> Rehab hombro</label>
+
+<h3>Dolor de hombro (0–10)</h3>
+<input type="range" min="0" max="10" id="pain" onchange="savePain()">
+<span id="painValue">0</span>
+
+<div style="background:#ddd;">
+  <div class="progress-bar" id="progressBar">0%</div>
+</div>
+
+<div id="alert"></div>
+</div>
+
+<!-- GYM -->
+<div id="gym" class="section">
+
+<h2>🏋️ Hombro</h2>
+
+<h3>Activación</h3>
+<label><input type="checkbox" class="gym-check"> Rotaciones externas (3x15)</label>
+<label><input type="checkbox" class="gym-check"> Face pulls (3x15)</label>
+<label><input type="checkbox" class="gym-check"> Y-T-W (2x12)</label>
+
+<h3>Estabilidad</h3>
+<label><input type="checkbox" class="gym-check"> Isométricos (3x30 seg)</label>
+<label><input type="checkbox" class="gym-check"> Plancha hombros (3x30 seg)</label>
+
+<h3>Fuerza</h3>
+<label><input type="checkbox" class="gym-check"> Press mancuernas (3x10)</label>
+<label><input type="checkbox" class="gym-check"> Remo (3x12)</label>
+<label><input type="checkbox" class="gym-check"> Elevaciones laterales (3x12)</label>
+
+<h3>Excéntricos</h3>
+<label><input type="checkbox" class="gym-check"> Rotación lenta (3x10)</label>
+<label><input type="checkbox" class="gym-check"> Elevación excéntrica (3x10)</label>
+
+<h2>🔥 Core (Estabilidad)</h2>
+
+<h3>Base</h3>
+<label><input type="checkbox" class="gym-check"> Plancha frontal (3x45 seg)</label>
+<label><input type="checkbox" class="gym-check"> Plancha lateral (3x30 seg)</label>
+
+<h3>Control</h3>
+<label><input type="checkbox" class="gym-check"> Dead bug (3x10)</label>
+<label><input type="checkbox" class="gym-check"> Bird dog (3x10)</label>
+
+<h3>Funcional (Stepper)</h3>
+<label><input type="checkbox" class="gym-check"> Step-up controlado (3x12)</label>
+<label><input type="checkbox" class="gym-check"> Marcha en stepper (3 min)</label>
+
+<h3>Anti-rotación</h3>
+<label><input type="checkbox" class="gym-check"> Plancha toque hombro (3x20)</label>
+<label><input type="checkbox" class="gym-check"> Hold unilateral (3x20 seg)</label>
+
+<h3>🎥 Referencia</h3>
+<iframe width="300" src="https://www.youtube.com/embed/6u8QpNmQy_g"></iframe>
+
+<h3>⏱️ Timer (isométricos)</h3>
+<button onclick="startTimer(30)">30s</button>
+<button onclick="startTimer(45)">45s</button>
+<div class="timer" id="timer"></div>
+
+</div>
+
+<!-- HISTORIAL -->
+<div id="historial" class="section">
+<h2>📈 Historial Semanal</h2>
+<table border="1" width="100%">
+<tr><th>Día</th><th>%</th><th>Dolor</th></tr>
+<tbody id="historyTable"></tbody>
+</table>
+<h3 id="avg"></h3>
+</div>
+
+<script>
+const days=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+const today=days[new Date().getDay()];
+document.getElementById("dayTitle").innerText="Hoy: "+today;
+
+const checks=document.querySelectorAll('.check');
+const progressBar=document.getElementById('progressBar');
+
+function update(){
+ let checked=document.querySelectorAll('.check:checked').length;
+ let percent=Math.round((checked/checks.length)*100);
+ progressBar.style.width=percent+"%";
+ progressBar.innerText=percent+"%";
+ localStorage.setItem("checks_"+today,JSON.stringify([...checks].map(c=>c.checked)));
+ saveHistory(percent);
+ checkAlerts(percent);
+}
+
+checks.forEach(c=>c.addEventListener('change',update));
+
+function load(){
+ let saved=JSON.parse(localStorage.getItem("checks_"+today));
+ if(saved){ checks.forEach((c,i)=>c.checked=saved[i]); update();}
+}
+load();
+
+function saveHistory(percent){
+ let history=JSON.parse(localStorage.getItem("history"))||{};
+ history[today]={percent:percent,pain:document.getElementById("pain").value};
+ localStorage.setItem("history",JSON.stringify(history));
+ renderHistory();
+}
+
+function renderHistory(){
+ let history=JSON.parse(localStorage.getItem("history"))||{};
+ let html=""; let total=0,count=0;
+
+ days.forEach(d=>{
+  let val=history[d]?.percent||0;
+  let pain=history[d]?.pain||"-";
+  html+=`<tr><td>${d}</td><td>${val}%</td><td>${pain}</td></tr>`;
+  if(val){ total+=val; count++;}
+ });
+
+ document.getElementById("historyTable").innerHTML=html;
+ document.getElementById("avg").innerText="Promedio: "+(count?Math.round(total/count):0)+"%";
+}
+renderHistory();
+
+function savePain(){
+ let val=document.getElementById("pain").value;
+ document.getElementById("painValue").innerText=val;
+ update();
+}
+
+function checkAlerts(percent){
+ let pain=document.getElementById("pain").value;
+ let alert="";
+ if(percent<50) alert+="⚠️ Bajo cumplimiento<br>";
+ if(pain>6) alert+="🚨 Dolor alto, baja intensidad<br>";
+ document.getElementById("alert").innerHTML=alert;
+}
+
+function showTab(tab){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ document.getElementById(tab).classList.add('active');
+ event.target.classList.add('active');
+}
+
+function startTimer(seconds){
+ let t=seconds;
+ let timer=document.getElementById("timer");
+ let interval=setInterval(()=>{
+  timer.innerText=t+"s";
+  t--;
+  if(t<0){ clearInterval(interval); timer.innerText="✔️";}
+ },1000);
+}
+</script>
+
+</body>
+</html>
