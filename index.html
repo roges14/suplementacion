@@ -611,25 +611,34 @@ function stopTimer() { clearInterval(timerInterval); document.getElementById('ti
 // GYM EXERCISES
 // ═══════════════════════════════════════════
 const GYM_EXERCISES = [
-  { id:'e1',  name:'Rotaciones externas',         sets:'3×15',     group:'Hombro — Activación',  tip:'Mantén el codo pegado al cuerpo. Movimiento lento y controlado.',              videoId:'FvpJ2sRCNkY', timers:[15,30] },
-  { id:'e2',  name:'Face pulls',                  sets:'3×15',     group:'Hombro — Activación',  tip:'Lleva las manos a nivel de oreja. No uses momentum.',                         videoId:'rep9jVnIhbg', timers:[15,30] },
-  { id:'e3',  name:'Y-T-W en banco',              sets:'2×12',     group:'Hombro — Activación',  tip:'Peso muy ligero. Activa el trapecio bajo y romboides.',                       videoId:'PECsNnNjP6c', timers:[] },
-  { id:'e4',  name:'Isométricos de hombro',       sets:'3×30 seg', group:'Hombro — Estabilidad', tip:'Presiona contra la pared o banda. Respira de forma continua.',                videoId:'r9-HZfbMGwI', timers:[30,45] },
-  { id:'e5',  name:'Plancha con toque de hombro', sets:'3×30 seg', group:'Hombro — Estabilidad', tip:'Caderas estables, no rotar. Pies separados para mayor base.',                 videoId:'wQq3ybaLZeA', timers:[30,45] },
-  { id:'e6',  name:'Press con mancuernas',        sets:'3×10',     group:'Hombro — Fuerza',      tip:'Rango parcial si hay molestia. Controla la bajada en 3 seg.',                 videoId:'qEwKCR5JCog', timers:[] },
-  { id:'e7',  name:'Remo con banda/cable',        sets:'3×12',     group:'Hombro — Fuerza',      tip:'Retracción escapular al final. Codo a 45° del cuerpo.',                       videoId:'GZbfZ033f74', timers:[] },
-  { id:'e8',  name:'Elevaciones laterales',       sets:'3×12',     group:'Hombro — Fuerza',      tip:'Ligera inclinación hacia adelante. Pinky arriba al subir.',                   videoId:'3VcKaXpzqRo', timers:[] },
-  { id:'e9',  name:'Rotación excéntrica',         sets:'3×10',     group:'Hombro — Excéntricos', tip:'4 segundos en la bajada. Es donde ocurre la adaptación tendinosa.',           videoId:'_x1DzZzFbM8', timers:[] },
-  { id:'e10', name:'Elevación excéntrica',        sets:'3×10',     group:'Hombro — Excéntricos', tip:'Sube con dos brazos, baja con uno. Foco total en el control.',                videoId:'RxJe4Ob0H5Q', timers:[] },
-  { id:'e11', name:'Plancha frontal',             sets:'3×45 seg', group:'Core — Base',          tip:'Comprime glúteos y abdomen. No dejes caer las caderas.',                      videoId:'pSHjTRCQxIw', timers:[30,45,60] },
-  { id:'e12', name:'Plancha lateral',             sets:'3×30 seg', group:'Core — Base',          tip:'Mantén una línea recta tobillo-cadera-hombro.',                               videoId:'_rdfjFSFKcM', timers:[30,45] },
-  { id:'e13', name:'Dead bug',                    sets:'3×10',     group:'Core — Control',       tip:'Zona lumbar siempre en contacto con el suelo. Movimiento lento.',             videoId:'4XLEnwUr1d8', timers:[] },
-  { id:'e14', name:'Bird dog',                    sets:'3×10',     group:'Core — Control',       tip:'Extiende brazo y pierna opuestos. Pausa de 2 seg arriba.',                    videoId:'wiFNA3sqjCA', timers:[] },
-  { id:'e15', name:'Step-up controlado',          sets:'3×12',     group:'Core — Funcional',     tip:'Rodilla alineada con el pie. No uses impulso del pie trasero.',                videoId:'dQqApCGd5Ss', timers:[] },
-  { id:'e16', name:'Marcha en stepper',           sets:'3 min',    group:'Core — Funcional',     tip:'Activa el core en cada paso. Postura erguida.',                               videoId:'XsRCCvv3p0U', timers:[60,180] },
-  { id:'e17', name:'Plancha toque hombro',        sets:'3×20',     group:'Core — Anti-Rotación', tip:'Minimiza el movimiento de cadera. Pies separados para mayor estabilidad.',    videoId:'wQq3ybaLZeA', timers:[30,45] },
-  { id:'e18', name:'Pallof press hold',           sets:'3×20 seg', group:'Core — Anti-Rotación', tip:'El core resiste la rotación, no los brazos. Posición completamente fija.',   videoId:'AH_QZLm_0-s', timers:[20,30] },
+  // Hombro — Activación
+  { id:'e1',  name:'Rotación externa con banda',       group:'Hombro — Activación',  sets:'3×15',     level:'Básico',      source:'E3 Rehab',        tip:'Codo pegado al cuerpo. Movimiento lento y controlado.',           videoId:'rSCiaMp2K74', timers:[15,30] },
+  { id:'e2',  name:'Face Pull (técnica correcta)',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',      source:'E3 Rehab',        tip:'Lleva las manos a la cara/orejas. No uses impulso.',             videoId:'GcMYpwXGrj8', timers:[15,30] },
+  { id:'e3',  name:'Y-T-W en banco',                   group:'Hombro — Activación',  sets:'2×12',     level:'Básico',      source:'Squat University', tip:'Peso muy ligero. Activa trapecio bajo y romboides.',             videoId:'2B2LWHlhqNA', timers:[] },
+  { id:'e4',  name:'Wall Slides',                      group:'Hombro — Activación',  sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Mantén contacto con la pared. No arquees la espalda.',           videoId:'y8iA0lP8r3c', timers:[] },
+  // Hombro — Estabilidad
+  { id:'e5',  name:'Isométricos de rotación externa',  group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Básico',      source:'E3 Rehab',        tip:'Presión constante contra banda o pared.',                        videoId:'R0J_aPs-Jgo', timers:[30,45] },
+  { id:'e6',  name:'Plancha con toque de hombro',      group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio',  source:'E3 Rehab',        tip:'Evita rotación de cadera.',                                      videoId:'LY0Gm3L6QIs', timers:[30,45] },
+  { id:'e7',  name:'Suitcase Carry',                   group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio',  source:'Squat University', tip:'Mantén el torso recto. No te inclines.',                        videoId:'4Xg7s7vH3bY', timers:[30,45] },
+  // Hombro — Fuerza
+  { id:'e8',  name:'Remo con mancuerna',               group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Retracción escapular al final.',                                 videoId:'pYcpY20QaE8', timers:[] },
+  { id:'e9',  name:'Elevaciones laterales',            group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Peso ligero. Control total.',                                    videoId:'3VcKaXpzqRo', timers:[] },
+  { id:'e10', name:'Press con mancuernas (neutral)',   group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio',  source:'Bob & Brad',      tip:'Solo si no hay dolor.',                                          videoId:'B-aVuyhvLHU', timers:[] },
+  { id:'e11', name:'Landmine Press',                   group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio',  source:'Squat University', tip:'Movimiento en diagonal más seguro.',                            videoId:'3u6Yh3f5c8w', timers:[] },
+  // Hombro — Excéntricos
+  { id:'e12', name:'Rotación externa excéntrica',      group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio',  source:'E3 Rehab',        tip:'4 segundos en la bajada.',                                       videoId:'H6l0GJZ4r0k', timers:[] },
+  { id:'e13', name:'Elevación excéntrica',             group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio',  source:'E3 Rehab',        tip:'Sube con dos brazos, baja con uno.',                             videoId:'Z2k1s9v2k6U', timers:[] },
+  { id:'e14', name:'Side-Lying External Rotation',    group:'Hombro — Excéntricos', sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Movimiento lento, sin impulso.',                                 videoId:'6u8QpNmQy_g', timers:[] },
+  // Core — Base
+  { id:'e15', name:'Dead Bug',                         group:'Core — Base',          sets:'3×10',     level:'Básico',      source:'E3 Rehab',        tip:'Zona lumbar siempre pegada al suelo.',                           videoId:'4XLEnwUr1d8', timers:[] },
+  { id:'e16', name:'Bird Dog',                         group:'Core — Base',          sets:'3×10',     level:'Básico',      source:'E3 Rehab',        tip:'Pausa arriba 2 seg.',                                            videoId:'wiFNA3sqjCA', timers:[] },
+  { id:'e17', name:'Plancha lateral',                  group:'Core — Base',          sets:'3×30 seg', level:'Básico',      source:'E3 Rehab',        tip:'Cuerpo en línea recta.',                                         videoId:'_rdfjFSFKcM', timers:[30,45] },
+  // Core — Anti-Rotación
+  { id:'e18', name:'Pallof Press Hold',                group:'Core — Anti-Rotación', sets:'3×20 seg', level:'Básico',      source:'E3 Rehab',        tip:'Resiste la rotación.',                                           videoId:'AH_QZLm_0-s', timers:[20,30] },
 ];
+
+// Level color mapping
+const LEVEL_COLOR = { 'Básico': 'var(--green)', 'Intermedio': 'var(--orange)', 'Avanzado': 'var(--red)' };
 
 function renderGym() {
   const list = document.getElementById('gymList');
@@ -649,13 +658,21 @@ function renderGym() {
     const card = document.createElement('div');
     card.className = 'exercise-card'+(done?' done':'');
     card.id = 'card_'+ex.id;
+    const lvlColor = LEVEL_COLOR[ex.level] || 'var(--muted)';
     const timersHtml = ex.timers.length
       ? `<div class="ex-timer-row">${ex.timers.map(t=>`<button class="timer-pill" onclick="startTimer(${t},'${formatTime(t)}')">⏱ ${formatTime(t)}</button>`).join('')}</div>`
       : '';
     card.innerHTML = `
       <div class="exercise-header" onclick="toggleExCard('${ex.id}')">
         <div class="ex-check"><svg class="check-icon" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-        <div class="ex-info"><div class="ex-name">${ex.name}</div><div class="ex-sets">${ex.sets}</div></div>
+        <div class="ex-info">
+          <div class="ex-name">${ex.name}</div>
+          <div class="ex-meta">
+            <span class="ex-sets">${ex.sets}</span>
+            <span class="ex-level" style="color:${lvlColor}">${ex.level}</span>
+            <span class="ex-source">${ex.source}</span>
+          </div>
+        </div>
         <svg class="ex-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="ex-body"><div class="ex-inner">
