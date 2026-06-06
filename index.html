@@ -16,7 +16,6 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
-/* ── HEADER ── */
 .header { padding: 1.4rem 1.5rem 1.2rem; }
 .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .logo { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
@@ -24,71 +23,45 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.6rem, 10vw, 5rem); font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -1px; white-space: nowrap; }
 .hero-title span { color: var(--accent); }
 
-/* ── TABS ── */
 .tabs-wrap { padding: 0.5rem 1.5rem; display: flex; gap: 4px; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .tab-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 8px; border: none; border-radius: 10px; background: transparent; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
 .tab-btn.active { background: var(--accent); color: #000; }
 .tab-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ── SECTIONS ── */
 .section { display: none; }
 .section.active { display: block; }
 .sec-pad { padding: 1.25rem 1.5rem 6rem; }
 .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ═══════════════════════════════════════
-   DAY ACCORDION CARDS
-═══════════════════════════════════════ */
+/* ═══ DAY CARDS ═══ */
 .days-list { display: flex; flex-direction: column; gap: 8px; }
-
-.day-card {
-  background: var(--card);
-  border: 1.5px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: border-color 0.2s;
-  position: relative;
-}
-.day-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  opacity: 0; transition: opacity 0.2s; border-radius: 18px 18px 0 0;
-}
+.day-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color 0.2s; position: relative; }
+.day-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0; transition: opacity 0.2s; border-radius: 18px 18px 0 0; }
 .day-card.type-gym.open::before        { opacity:1; background: var(--accent); }
 .day-card.type-natacion.open::before   { opacity:1; background: var(--accent2); }
 .day-card.type-senderismo.open::before { opacity:1; background: var(--green); }
 .day-card.type-descanso.open::before   { opacity:1; background: var(--purple); }
+.day-card.type-flexible.open::before   { opacity:1; background: var(--orange); }
 .day-card.type-gym.open        { border-color: rgba(232,255,71,0.35); }
 .day-card.type-natacion.open   { border-color: rgba(71,200,255,0.35); }
 .day-card.type-senderismo.open { border-color: rgba(46,213,115,0.35); }
 .day-card.type-descanso.open   { border-color: rgba(167,139,250,0.35); }
+.day-card.type-flexible.open   { border-color: rgba(255,165,2,0.35); }
 
-/* Card header */
-.dc-head {
-  display: flex; align-items: center; gap: 14px;
-  padding: 16px 18px; cursor: pointer; user-select: none;
-}
+.dc-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; user-select: none; }
 .dc-head:hover { background: rgba(255,255,255,0.02); }
-
 .dc-day-col { flex: 1; }
-.dc-day-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.9rem; font-weight: 900; line-height: 1;
-  text-transform: uppercase; letter-spacing: -0.5px;
-}
+.dc-day-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.9rem; font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -0.5px; }
 .type-gym.open .dc-day-name        { color: var(--accent); }
 .type-natacion.open .dc-day-name   { color: var(--accent2); }
 .type-senderismo.open .dc-day-name { color: var(--green); }
 .type-descanso.open .dc-day-name   { color: var(--purple); }
-
+.type-flexible.open .dc-day-name   { color: var(--orange); }
 .dc-type-row { display: flex; align-items: center; gap: 5px; margin-top: 3px; }
 .dc-icon { font-size: 13px; }
 .dc-type-name { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-
 .today-pill { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 900; letter-spacing: 2px; color: #000; background: var(--accent); padding: 2px 7px; border-radius: 4px; margin-left: 6px; }
-
-/* progress column */
 .dc-prog-col { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 80px; }
 .dc-pct-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; color: var(--muted); }
 .day-card.open .dc-pct-num { color: var(--text); }
@@ -97,29 +70,45 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .type-natacion .dc-bar-fill   { background: var(--accent2); }
 .type-senderismo .dc-bar-fill { background: var(--green); }
 .type-descanso .dc-bar-fill   { background: var(--purple); }
-
+.type-flexible .dc-bar-fill   { background: var(--orange); }
 .dc-arr { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
 .day-card.open .dc-arr { transform: rotate(180deg); }
-
-/* Card body */
 .dc-body { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(.4,0,.2,1); }
 .day-card.open .dc-body { max-height: 3000px; }
 .dc-body-inner { border-top: 1px solid var(--border); padding: 14px 18px 18px; }
 
-/* Goal chips */
+/* ═══ SELECTOR FLEXIBLE (Sáb/Dom) ═══ */
+.flex-selector { display: flex; gap: 8px; margin-bottom: 14px; }
+.flex-btn {
+  flex: 1; padding: 14px 10px; border-radius: 14px; border: 1.5px solid var(--border);
+  background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.flex-btn:hover { background: rgba(255,255,255,0.06); }
+.flex-btn.selected-senderismo { border-color: rgba(46,213,115,0.5); background: rgba(46,213,115,0.07); }
+.flex-btn.selected-descanso   { border-color: rgba(167,139,250,0.5); background: rgba(167,139,250,0.07); }
+.flex-btn-icon { font-size: 24px; }
+.flex-btn-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.flex-btn.selected-senderismo .flex-btn-label { color: var(--green); }
+.flex-btn.selected-descanso   .flex-btn-label { color: var(--purple); }
+.flex-reset { font-size: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; margin-bottom: 10px; display: none; }
+.flex-reset.visible { display: inline-block; }
+.flex-protocol { display: none; }
+.flex-protocol.visible { display: block; }
+.flex-pending { text-align: center; padding: 20px 0; color: var(--muted); font-size: 13px; }
+.flex-pending strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--orange); margin-bottom: 4px; }
+
+/* ═══ TIME BLOCKS ═══ */
 .goal-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
 .goal-chip { font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); }
 .goal-chip.good { border-color: rgba(46,213,115,0.3); background: rgba(46,213,115,0.06); color: var(--green); }
 .goal-chip.bad  { border-color: rgba(255,71,87,0.3);  background: rgba(255,71,87,0.06);  color: var(--red); }
-
-/* Time blocks */
 .time-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
 .time-block-head { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; }
 .time-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
 .badge-key { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(232,255,71,0.12); color: var(--accent); border: 1px solid rgba(232,255,71,0.25); }
 .badge-opt { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(255,165,2,0.10); color: var(--orange); border: 1px solid rgba(255,165,2,0.20); }
 .badge-exc { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
-
 .supp-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border); cursor: pointer; transition: background 0.15s; user-select: none; }
 .supp-item:hover { background: rgba(255,255,255,0.02); }
 .supp-emoji { font-size: 17px; width: 24px; text-align: center; flex-shrink: 0; }
@@ -132,19 +121,13 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .supp-item.done .supp-name { color: var(--muted); text-decoration: line-through; }
 .chk-svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.15s; }
 .supp-item.done .chk-svg { opacity: 1; }
-
 .food-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border); background: rgba(46,213,115,0.03); }
 .food-item .supp-name { color: var(--green); }
 .food-item .supp-dose { color: rgba(46,213,115,0.6); }
-
 .block-note { font-size: 11px; color: var(--muted); padding: 7px 14px 9px; line-height: 1.5; border-top: 1px solid var(--border); }
-.block-note span { color: var(--text); }
-
-/* Descanso extras */
 .no-use-block { background: rgba(255,71,87,0.04); border: 1px solid rgba(255,71,87,0.12); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
 .no-use-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
 .no-use-item { font-size: 12px; color: var(--muted); padding: 3px 0; }
-
 .truth-box { background: rgba(232,255,71,0.04); border: 1px solid rgba(232,255,71,0.12); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
 .truth-box-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 .truth-item { display: flex; gap: 9px; padding: 5px 0; font-size: 12px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -153,12 +136,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .truth-text { flex: 1; line-height: 1.5; color: var(--muted); }
 .truth-text strong { color: var(--text); font-weight: 600; }
 
-/* Dosis summary tag */
-.dosis-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; background: rgba(71,200,255,0.10); color: var(--accent2); border: 1px solid rgba(71,200,255,0.20); margin-left: 6px; vertical-align: middle; }
-
-/* ═══════════════════════════════════════
-   PRINCIPIOS ACCORDION
-═══════════════════════════════════════ */
+/* ═══ PRINCIPIOS ACCORDION ═══ */
 .accord { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; overflow: hidden; }
 .accord-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; gap: 12px; }
 .accord-head:hover { background: rgba(255,255,255,0.02); }
@@ -180,8 +158,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .adj-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .adj-text { flex: 1; color: var(--muted); }
 .adj-text strong { color: var(--text); font-weight: 600; }
-
-/* Dosis table */
 .dosis-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
 .dosis-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
 .dosis-table td { padding: 8px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--muted); vertical-align: top; }
@@ -189,9 +165,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .dosis-table td strong { color: var(--accent); }
 .dosis-table tr:last-child td { border-bottom: none; }
 
-/* ═══════════════════════════════════════
-   GYM
-═══════════════════════════════════════ */
+/* ═══ GYM ═══ */
 .check-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 .check-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 .exercise-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; overflow: hidden; }
@@ -213,7 +187,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .ex-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .exercise-card.open .ex-body { max-height: 500px; }
 .ex-inner { border-top: 1px solid var(--border); padding: 14px 16px; }
-
 .ex-video-outer { display: flex; justify-content: center; margin-bottom: 12px; }
 .ex-video-wrap { width: 60%; border-radius: 10px; overflow: hidden; background: #000; }
 .ex-video-aspect { position: relative; padding-bottom: 56.25%; }
@@ -222,7 +195,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
 .play-btn:hover { transform: scale(1.08); }
 .play-btn svg { margin-left: 2px; }
-
 .ex-tip { font-size: 12px; color: var(--muted); line-height: 1.5; background: rgba(232,255,71,0.05); border-left: 2px solid var(--accent); padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 10px; }
 .ex-timer-row { display: flex; gap: 6px; }
 .timer-pill { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--accent); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; text-align: center; }
@@ -238,7 +210,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-top">
     <div class="logo">Modo Atleta Pro</div>
@@ -247,7 +218,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
   <div class="hero-title">HOY <span id="dayName">—</span></div>
 </div>
 
-<!-- TABS -->
 <div class="tabs-wrap">
   <button class="tab-btn active" onclick="showTab('tracking',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -259,16 +229,13 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
   </button>
 </div>
 
-<!-- ═══════════ SUPLEMENTACIÓN ═══════════ -->
 <div id="tracking" class="section active">
   <div class="sec-pad">
     <div class="section-label">Semana actual</div>
     <div class="days-list" id="daysList"></div>
 
-    <!-- PRINCIPIOS -->
     <div class="section-label" style="margin-top:1.5rem;">Principios del plan</div>
 
-    <!-- DOSIS REALES -->
     <div class="accord" id="acc0">
       <div class="accord-head" onclick="toggleAccord('acc0')">
         <span class="accord-icon">📋</span>
@@ -281,15 +248,15 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
           <tbody>
             <tr><td>💪 Colágeno hidrolizado</td><td>Péptidos de res</td><td><strong>12–15 g</strong></td><td>Polvo en agua</td></tr>
             <tr><td>⚙️ Creatina monohidratada</td><td>5 g / scoop</td><td><strong>5 g fijos</strong></td><td>1 scoop</td></tr>
-            <tr><td>🐟 Omega 3 (salmón noruego)</td><td>EPA 300 mg + DHA 200 mg = <strong>500 mg EPA+DHA</strong></td><td>1–1.5 g EPA+DHA</td><td><strong>2–3 caps</strong></td></tr>
+            <tr><td>🐟 Omega 3 (salmón noruego)</td><td>EPA 300 mg + DHA 200 mg = 500 mg</td><td>1–1.5 g EPA+DHA</td><td><strong>2–3 caps</strong></td></tr>
             <tr><td>🦴 Hialoflex</td><td>Colágeno tipo II 40 mg + Hialurónico 80 mg</td><td>1 cápsula</td><td><strong>1 cap</strong></td></tr>
             <tr><td>⚡ Citrulina</td><td>1,200 mg / cápsula</td><td>5–6 g</td><td><strong>4–5 caps</strong></td></tr>
             <tr><td>🟠 Cúrcuma + Vit C</td><td>Según etiqueta</td><td>1 cápsula</td><td><strong>1 cap</strong></td></tr>
-            <tr><td>🍌 Plátano (natación)</td><td>Carbohidrato natural</td><td>1 plátano</td><td>Con colágeno 6:00 am</td></tr>
+            <tr><td>🍌 Plátano (natación)</td><td>Carbohidrato natural</td><td>1 pieza</td><td>Con colágeno 6:00 am</td></tr>
           </tbody>
         </table>
-        <div class="truth-item" style="margin-top:8px;"><div class="truth-bullet"></div><div class="truth-text"><strong>Arginina eliminada:</strong> la citrulina (1,200 mg/cap) ya se convierte en arginina con mejor biodisponibilidad. No duplicas.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Omega 3 verificado:</strong> 500 mg EPA+DHA por cápsula. Con 2–3 caps llegas a 1–1.5 g objetivo.</div></div>
+        <div class="truth-item" style="margin-top:8px;"><div class="truth-bullet"></div><div class="truth-text"><strong>Arginina eliminada:</strong> la citrulina ya se convierte en arginina con mejor biodisponibilidad.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Omega 3 verificado:</strong> 500 mg EPA+DHA/cápsula. 2–3 caps = 1–1.5 g objetivo.</div></div>
       </div></div>
     </div>
 
@@ -310,10 +277,9 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
           <div class="supp-pill"><span class="pill-emoji">🧠</span><span class="pill-name">Clarity</span><span class="pill-fn">→ enfoque mental</span><span class="pill-dose">1 cap</span></div>
           <div class="supp-pill"><span class="pill-emoji">🍌</span><span class="pill-name">Plátano</span><span class="pill-fn">→ energía pre-natación</span><span class="pill-dose">6:00 am</span></div>
         </div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Citrulina → arginina in vivo.</strong> No necesitas arginina por separado. Se eliminó del plan.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Colágeno + estímulo mecánico</strong> es lo que realmente regenera el tendón. La Vit C activa la síntesis.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Hialoflex ≠ colágeno estructural.</strong> Es colágeno tipo II: modulación inmune articular, no relleno de tendón.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Cada suplemento tiene función clara. <strong>Sin duplicados, sin dinero tirado.</strong></div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Citrulina → arginina in vivo.</strong> No necesitas arginina por separado.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Colágeno + estímulo mecánico</strong> regenera el tendón. Sin ejercicio, no aplica.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Hialoflex ≠ colágeno estructural.</strong> Es modulación inmune articular (tipo II).</div></div>
       </div></div>
     </div>
 
@@ -325,7 +291,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
       </div>
       <div class="accord-body"><div class="accord-inner">
         <div class="adjust-item"><span class="adj-icon">🟠</span><div class="adj-text"><strong>Cúrcuma + Vit C →</strong> 2 al día (mañana + noche)</div></div>
-        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja intensidad</strong> en Citrulina — 3 caps bastan</div></div>
+        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja citrulina</strong> a 3 caps — suficiente para flujo sin sobrecargar</div></div>
         <div class="adjust-item"><span class="adj-icon">🧠</span><div class="adj-text"><strong>Mantén movimiento</strong> — clave para recuperación del tendón. No pares.</div></div>
         <div class="adjust-item"><span class="adj-icon">❌</span><div class="adj-text">Evita press overhead pesado. Prioriza <strong>excéntricos y rehab</strong>.</div></div>
       </div></div>
@@ -333,20 +299,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 
     <div class="accord" id="acc3">
       <div class="accord-head" onclick="toggleAccord('acc3')">
-        <span class="accord-icon">🚀</span>
-        <span class="accord-title">Si quieres más rendimiento</span>
-        <svg class="accord-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-      </div>
-      <div class="accord-body"><div class="accord-inner">
-        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text"><strong>Citrulina es el motor.</strong> Mantén 4–5 caps (≈ 5–6 g) como base sólida.</div></div>
-        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text">Considera <strong>citrulina en polvo</strong> — mejor absorción que cápsulas, más fácil llegar a 6 g.</div></div>
-        <div class="adjust-item"><span class="adj-icon">🐟</span><div class="adj-text">Omega 3 con <strong>la comida más grasa del día</strong> — mejora absorción hasta 50%.</div></div>
-        <div class="adjust-item"><span class="adj-icon">⏱️</span><div class="adj-text">Si cambias horario: mueve <strong>todo el bloque PRE junto</strong>. Colágeno → 30–60 min antes. Citrulina → 20–30 min antes.</div></div>
-      </div></div>
-    </div>
-
-    <div class="accord" id="acc4">
-      <div class="accord-head" onclick="toggleAccord('acc4')">
         <span class="accord-icon">🎯</span>
         <span class="accord-title">Resumen en 3 líneas</span>
         <svg class="accord-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -356,21 +308,19 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
         <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>POST:</strong> Creatina 5 g + Omega 3 2–3 caps + Hialoflex 1 cap</div></div>
         <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Natación extra:</strong> 🍌 plátano a las 6:00 am junto al colágeno</div></div>
         <div style="margin-top:10px;padding:10px 12px;background:rgba(232,255,71,0.05);border:1px solid rgba(232,255,71,0.12);border-radius:10px;font-size:12px;color:var(--muted);line-height:1.8;">
-          ✔ Sin arginina (citrulina la sustituye) &nbsp;·&nbsp; ✔ Omega 3 verificado 500 mg/cap &nbsp;·&nbsp; ✔ Fisiología real &nbsp;·&nbsp; ✔ Sin sobrecargar
+          ✔ Sin arginina &nbsp;·&nbsp; ✔ Omega 3 verificado 500 mg/cap &nbsp;·&nbsp; ✔ Sáb/Dom flexible &nbsp;·&nbsp; ✔ Sin sobrecargar
         </div>
       </div></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════ GYM ═══════════ -->
 <div id="gym" class="section">
   <div class="sec-pad">
     <div id="gymList"></div>
   </div>
 </div>
 
-<!-- TIMER OVERLAY -->
 <div class="timer-overlay" id="timerOverlay">
   <div>
     <div class="timer-display" id="timerDisplay">00:00</div>
@@ -380,9 +330,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 </div>
 
 <script>
-// ═══════════════════════════════════════════
-// CONFIG
-// ═══════════════════════════════════════════
 const DAYS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const DAY_SHORT = ["DOM","LUN","MAR","MIÉ","JUE","VIE","SÁB"];
 const DISPLAY_ORDER = [1,2,3,4,5,6,0];
@@ -391,161 +338,132 @@ const today = DAYS[new Date().getDay()];
 document.getElementById('dayName').textContent = today.toUpperCase();
 document.getElementById('dateBadge').textContent = new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long'}).toUpperCase();
 
+// Lun/Vie=gym, Mar/Mié/Jue=natacion, Sáb/Dom=flexible
 const DAY_TYPES = {
-  'Lunes':'gym', 'Martes':'natacion', 'Miércoles':'natacion',
-  'Jueves':'natacion', 'Viernes':'gym', 'Sábado':'senderismo', 'Domingo':'descanso'
+  'Lunes':'gym','Martes':'natacion','Miércoles':'natacion',
+  'Jueves':'natacion','Viernes':'gym','Sábado':'flexible','Domingo':'flexible'
 };
 
-// ─── PROTOCOLS (dosis actualizadas con info real de etiquetas) ───
-const PROTOCOLS = {
+// ─── Guardar/leer selección flexible ───
+const getFlexChoice = d => localStorage.getItem('flex_'+d) || null; // 'senderismo' | 'descanso' | null
+const setFlexChoice = (d,v) => localStorage.setItem('flex_'+d, v);
+const clearFlexChoice = d => localStorage.removeItem('flex_'+d);
 
-  // ════════════════════════════════
-  // NATACIÓN — Mar / Mié / Jue
-  // ════════════════════════════════
+// ─── PROTOCOLS ───
+const PROTOCOLS = {
   natacion: {
     label:'Natación', icon:'🏊',
     blocks:[
-      {
-        tag:'pre1', time:'6:00 am — PRE tendón', key:true,
-        note:'Colágeno + Vit C 30–60 min antes del agua. El plátano da glucosa sin peso en el estómago.',
+      { tag:'pre1', time:'6:00 am — PRE tendón', key:true,
+        note:'Colágeno + Vit C 30–60 min antes. El plátano da glucosa sin peso en el estómago.',
         items:[
           { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · activar con Vit C', emoji:'💪' },
           { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
           { id:'pla', name:'Plátano', dose:'1 pieza', detail:'Potasio + glucosa · fácil digestión', emoji:'🍌', food:true },
-        ]
-      },
-      {
-        tag:'pre2', time:'6:30 am — PRE rendimiento', 
+        ]},
+      { tag:'pre2', time:'6:30 am — PRE rendimiento',
         note:'20–30 min antes del agua. La citrulina reemplaza arginina con mejor biodisponibilidad.',
         items:[
           { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · vasodilatación + flujo muscular', emoji:'⚡' },
-        ]
-      },
-      {
-        tag:'post', time:'POST — Desayuno',
+        ]},
+      { tag:'post', time:'POST — Desayuno',
         note:'Omega 3 con la comida más grasa para mejor absorción.',
         items:[
           { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Micronizada · recuperación muscular', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA por cápsula · aceite salmón noruego', emoji:'🐟' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II 40 mg + Hialurónico 80 mg · articulación', emoji:'🦴' },
-        ]
-      },
-      {
-        tag:'opt', time:'Opcional', optional:true,
+          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA por cápsula', emoji:'🐟' },
+          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II 40 mg + Hialurónico 80 mg', emoji:'🦴' },
+        ]},
+      { tag:'opt', time:'Opcional', optional:true,
         items:[
-          { id:'cla', name:'Clarity', dose:'1 cápsula', detail:'Hongo Melena de León + L-Tirosina + Vitaminas B · solo si lo necesitas', emoji:'🧠' },
-        ]
-      },
+          { id:'cla', name:'Clarity', dose:'1 cápsula', detail:'Hongo Melena de León + L-Tirosina + Vitaminas B', emoji:'🧠' },
+        ]},
     ]
   },
-
-  // ════════════════════════════════
-  // GYM — Lun / Vie
-  // ════════════════════════════════
   gym: {
     label:'Gym + Core', icon:'🏋️',
     blocks:[
-      {
-        tag:'pre', time:'30–60 min antes — PRE', key:true,
-        note:'Colágeno primero (necesita más tiempo). Citrulina 20–30 min antes del entreno.',
+      { tag:'pre', time:'30–60 min antes — PRE', key:true,
+        note:'Colágeno primero. Citrulina 20–30 min antes del entreno.',
         items:[
           { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · repara tendón', emoji:'💪' },
           { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
-          { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · reemplaza arginina con mejor biodisponibilidad', emoji:'⚡' },
-        ]
-      },
-      {
-        tag:'post', time:'POST',
+          { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · reemplaza arginina', emoji:'⚡' },
+        ]},
+      { tag:'post', time:'POST',
         note:'Omega 3 con la comida más grasa del día.',
         items:[
-          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Micronizada · siempre diario, incluso en descanso', emoji:'⚙️' },
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Siempre diario, incluso en descanso', emoji:'⚙️' },
           { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · antiinflamatorio base', emoji:'🐟' },
           { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II + Hialurónico · soporte articular', emoji:'🦴' },
-        ]
-      },
+        ]},
     ]
   },
-
-  // ════════════════════════════════
-  // SENDERISMO — Sáb / Dom
-  // ════════════════════════════════
   senderismo: {
     label:'Senderismo', icon:'🚶',
     blocks:[
-      {
-        tag:'pre', time:'Antes de salir', key:true,
-        note:'Colágeno con Vit C 30–60 min antes. Omega 3 con algo de grasa (ej. nueces).',
+      { tag:'pre', time:'Antes de salir', key:true,
+        note:'Colágeno con Vit C 30–60 min antes. Omega 3 con algo de grasa.',
         items:[
-          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · tendones y articulaciones', emoji:'💪' },
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Tendones y articulaciones', emoji:'💪' },
           { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio + síntesis colágeno', emoji:'🟠' },
-          { id:'ome', name:'Omega 3', dose:'1–2 cápsulas', detail:'500 mg EPA+DHA/cap · soporte articular en caminata larga', emoji:'🐟' },
-        ]
-      },
-      {
-        tag:'opt', time:'Opcional — si quieres rendimiento extra', optional:true,
-        note:'Solo si la ruta es larga o exigente.',
+          { id:'ome', name:'Omega 3', dose:'1–2 cápsulas', detail:'500 mg EPA+DHA/cap · soporte articular en caminata', emoji:'🐟' },
+        ]},
+      { tag:'opt', time:'Opcional — si la ruta es larga', optional:true,
+        note:'Solo si la ruta es exigente.',
         items:[
           { id:'cit', name:'Citrulina', dose:'3–4 cápsulas (≈ 4–5 g)', detail:'1,200 mg/cap · mejor flujo en subidas', emoji:'⚡' },
-        ]
-      },
-      {
-        tag:'post', time:'Después',
+        ]},
+      { tag:'post', time:'Después',
         items:[
           { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Recuperación · diario sin excepción', emoji:'⚙️' },
           { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Post-caminata larga · recuperación articular', emoji:'🦴' },
-        ]
-      },
+        ]},
     ]
   },
-
-  // ════════════════════════════════
-  // DESCANSO
-  // ════════════════════════════════
   descanso: {
     label:'Descanso', icon:'🛌',
     blocks:[
-      {
-        tag:'manana', time:'🌅 Mañana — con desayuno', key:true,
+      { tag:'manana', time:'🌅 Mañana — con desayuno', key:true,
         note:'Todo con comida. El progreso también pasa cuando recuperas bien.',
         items:[
           { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Siempre · mantiene saturación muscular', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · desinflamación en reposo', emoji:'🐟' },
+          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'Desinflamación en reposo', emoji:'🐟' },
           { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Soporte articular diario', emoji:'🦴' },
-        ]
-      },
-      {
-        tag:'noche', time:'🌇 Tarde / Noche', optional:true,
+        ]},
+      { tag:'noche', time:'🌇 Tarde / Noche', optional:true,
         note:'Solo si hay dolor, inflamación, o vienes de días cargados.',
         items:[
           { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio de recuperación', emoji:'🟠' },
-        ]
-      },
-      {
-        tag:'rehab', time:'⚠️ Si haces rehab de hombro', exc:true,
-        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo mecánico en el tendón.',
+        ]},
+      { tag:'rehab', time:'⚠️ Si haces rehab de hombro', exc:true,
+        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo mecánico.',
         items:[
           { id:'col', name:'Colágeno hidrolizado', dose:'10–12 g en agua', detail:'Dosis menor · suficiente para rehab', emoji:'💪' },
           { id:'cur2', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis', emoji:'🟠' },
-        ]
-      },
+        ]},
     ]
   }
 };
 
-// ═══════════════════════════════════════════
-// STORAGE
-// ═══════════════════════════════════════════
+// ─── Storage ───
 const getSuppState = d => { try { return JSON.parse(localStorage.getItem('supp_'+d)||'{}'); } catch(e) { return {}; } };
 const setSuppState = (d,s) => { try { localStorage.setItem('supp_'+d, JSON.stringify(s)); } catch(e) {} };
 
+function getEffectiveType(dayName) {
+  const base = DAY_TYPES[dayName];
+  if (base === 'flexible') return getFlexChoice(dayName) || 'flexible';
+  return base;
+}
+
 function getDayProgress(dayName) {
-  const type = DAY_TYPES[dayName] || 'descanso';
+  const type = getEffectiveType(dayName);
+  if (type === 'flexible') return { total:0, done:0, pct:0 };
   const proto = PROTOCOLS[type];
   const state = getSuppState(dayName);
   let total=0, done=0;
   proto.blocks.forEach(b => {
     if (!b.optional && !b.exc) b.items.forEach(item => {
-      if (item.food) return; // no contamos alimentos en progreso
+      if (item.food) return;
       total++;
       if (state[b.tag+'_'+item.id]) done++;
     });
@@ -553,112 +471,177 @@ function getDayProgress(dayName) {
   return { total, done, pct: total>0 ? Math.round(done/total*100) : 0 };
 }
 
-// ═══════════════════════════════════════════
-// RENDER DAY LIST
-// ═══════════════════════════════════════════
+// ─── Build protocol HTML ───
+function buildProtocolHtml(dayName, type) {
+  const proto = PROTOCOLS[type];
+  const state = getSuppState(dayName);
+  let html = '';
+
+  if (type === 'descanso') {
+    html += `<div class="goal-chips">
+      <div class="goal-chip good">✔ Recuperación</div>
+      <div class="goal-chip good">✔ Desinflamación</div>
+      <div class="goal-chip good">✔ Saturación creatina</div>
+      <div class="goal-chip bad">❌ Sin pre-entreno</div>
+    </div>`;
+  }
+
+  proto.blocks.forEach(block => {
+    const badge = block.key ? '<span class="badge-key">CLAVE</span>'
+                : block.optional ? '<span class="badge-opt">OPCIONAL</span>'
+                : block.exc ? '<span class="badge-exc">EXCEPCIÓN</span>' : '';
+    html += `<div class="time-block"><div class="time-block-head"><span class="time-lbl">${block.time}</span>${badge}</div>`;
+    block.items.forEach(item => {
+      if (item.food) {
+        html += `<div class="food-item">
+          <span class="supp-emoji">${item.emoji}</span>
+          <div class="supp-info">
+            <div class="supp-name">${item.name}</div>
+            <div class="supp-dose">${item.dose}</div>
+            ${item.detail?`<div class="supp-detail">${item.detail}</div>`:''}
+          </div>
+          <span style="font-size:10px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;">ALIMENTO</span>
+        </div>`;
+      } else {
+        const key = block.tag+'_'+item.id;
+        const isDone = state[key] ? ' done' : '';
+        html += `<div class="supp-item${isDone}" id="si_${dayName}_${key}" onclick="toggleSupp('${dayName}','${key}')">
+          <span class="supp-emoji">${item.emoji}</span>
+          <div class="supp-info">
+            <div class="supp-name">${item.name}</div>
+            <div class="supp-dose">${item.dose}</div>
+            ${item.detail?`<div class="supp-detail">${item.detail}</div>`:''}
+          </div>
+          <div class="supp-chk"><svg class="chk-svg" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>`;
+      }
+    });
+    if (block.note) html += `<div class="block-note">👉 ${block.note}</div>`;
+    html += `</div>`;
+  });
+
+  if (type === 'descanso') {
+    html += `<div class="no-use-block">
+      <div class="no-use-title">En días sin entrenamiento NO usas</div>
+      <div class="no-use-item">❌ Colágeno — sin estímulo mecánico no activa síntesis</div>
+      <div class="no-use-item">❌ Citrulina — solo para rendimiento inmediato</div>
+      <div class="no-use-item">❌ Clarity — solo cuando lo necesites</div>
+    </div>
+    <div class="truth-box">
+      <div class="truth-box-title">🧠 Lógica del día de descanso</div>
+      <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>El progreso no pasa solo cuando entrenas.</strong> Pasa cuando recuperas bien.</div></div>
+      <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Mantienes <strong>creatina</strong>, <strong>omega 3</strong> y <strong>hialoflex</strong> — recuperación y articulación.</div></div>
+      <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Eliminas lo que es solo para rendimiento inmediato. <strong>Sin desperdiciar.</strong></div></div>
+    </div>`;
+  }
+  return html;
+}
+
+// ─── Build flexible selector HTML ───
+function buildFlexibleHtml(dayName) {
+  const choice = getFlexChoice(dayName);
+  const selSend = choice === 'senderismo' ? 'selected-senderismo' : '';
+  const selDesc = choice === 'descanso'   ? 'selected-descanso'   : '';
+
+  let html = `<div class="flex-selector">
+    <button class="flex-btn ${selSend}" onclick="chooseFlexType('${dayName}','senderismo')">
+      <span class="flex-btn-icon">🚶</span>
+      <span class="flex-btn-label">Senderismo</span>
+    </button>
+    <button class="flex-btn ${selDesc}" onclick="chooseFlexType('${dayName}','descanso')">
+      <span class="flex-btn-icon">🛌</span>
+      <span class="flex-btn-label">Descanso</span>
+    </button>
+  </div>`;
+
+  if (choice) {
+    html += `<button class="flex-reset visible" onclick="resetFlexType('${dayName}')">↺ Cambiar selección</button>`;
+    html += `<div class="flex-protocol visible" id="fp_${dayName}">${buildProtocolHtml(dayName, choice)}</div>`;
+  } else {
+    html += `<button class="flex-reset" id="freset_${dayName}" onclick="resetFlexType('${dayName}')">↺ Cambiar selección</button>`;
+    html += `<div class="flex-protocol" id="fp_${dayName}">
+      <div class="flex-pending"><strong>¿Qué haces hoy?</strong>Elige arriba para cargar tu protocolo</div>
+    </div>`;
+  }
+  return html;
+}
+
+// ─── Flex actions ───
+function chooseFlexType(dayName, type) {
+  setFlexChoice(dayName, type);
+  // Actualizar tipo visual de la card
+  const card = document.getElementById('dc_'+dayName);
+  card.className = `day-card type-${type} open`;
+  // Reconstruir interior
+  const inner = card.querySelector('.dc-body-inner');
+  inner.innerHTML = buildFlexibleHtml(dayName);
+  // Actualizar icono y label en header
+  const proto = PROTOCOLS[type];
+  card.querySelector('.dc-icon').textContent = proto.icon;
+  card.querySelector('.dc-type-name').textContent = proto.label;
+  updateCardProgress(dayName);
+}
+
+function resetFlexType(dayName) {
+  clearFlexChoice(dayName);
+  const card = document.getElementById('dc_'+dayName);
+  card.className = `day-card type-flexible open`;
+  card.querySelector('.dc-icon').textContent = '🔀';
+  card.querySelector('.dc-type-name').textContent = 'Elige tipo';
+  const inner = card.querySelector('.dc-body-inner');
+  inner.innerHTML = buildFlexibleHtml(dayName);
+  const pctEl = document.getElementById('pct_'+dayName);
+  const barEl = document.getElementById('bar_'+dayName);
+  if (pctEl) pctEl.textContent = '—';
+  if (barEl) barEl.style.width = '0%';
+}
+
+// ─── Render days ───
 function renderDaysList() {
   const list = document.getElementById('daysList');
   list.innerHTML = '';
-
   DISPLAY_ORDER.forEach(dayIdx => {
     const dayName = DAYS[dayIdx];
     const abbr = DAY_SHORT[dayIdx];
-    const type = DAY_TYPES[dayName] || 'descanso';
-    const proto = PROTOCOLS[type];
+    const baseType = DAY_TYPES[dayName] || 'descanso';
+    const effectiveType = getEffectiveType(dayName);
     const isToday = dayName === today;
-    const { total, done, pct } = getDayProgress(dayName);
-    const state = getSuppState(dayName);
+    const { pct } = getDayProgress(dayName);
 
-    let blocksHtml = '';
+    const proto = effectiveType !== 'flexible' ? PROTOCOLS[effectiveType] : null;
+    const icon = proto ? proto.icon : '🔀';
+    const label = proto ? proto.label : 'Elige tipo';
 
-    if (type === 'descanso') {
-      blocksHtml += `<div class="goal-chips">
-        <div class="goal-chip good">✔ Recuperación</div>
-        <div class="goal-chip good">✔ Desinflamación</div>
-        <div class="goal-chip good">✔ Saturación creatina</div>
-        <div class="goal-chip bad">❌ Sin pre-entreno</div>
-      </div>`;
+    let bodyContent = '';
+    if (baseType === 'flexible') {
+      bodyContent = buildFlexibleHtml(dayName);
+    } else {
+      bodyContent = buildProtocolHtml(dayName, effectiveType);
     }
-
-    proto.blocks.forEach(block => {
-      let badgeHtml = block.key ? '<span class="badge-key">CLAVE</span>'
-                    : block.optional ? '<span class="badge-opt">OPCIONAL</span>'
-                    : block.exc ? '<span class="badge-exc">EXCEPCIÓN</span>' : '';
-      blocksHtml += `<div class="time-block">
-        <div class="time-block-head"><span class="time-lbl">${block.time}</span>${badgeHtml}</div>`;
-
-      block.items.forEach(item => {
-        if (item.food) {
-          // Alimento — sin checkbox
-          blocksHtml += `<div class="food-item">
-            <span class="supp-emoji">${item.emoji}</span>
-            <div class="supp-info">
-              <div class="supp-name">${item.name}</div>
-              <div class="supp-dose">${item.dose}</div>
-              ${item.detail ? `<div class="supp-detail">${item.detail}</div>` : ''}
-            </div>
-            <span style="font-size:10px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;">ALIMENTO</span>
-          </div>`;
-        } else {
-          const key = block.tag+'_'+item.id;
-          const isDone = state[key] ? ' done' : '';
-          blocksHtml += `<div class="supp-item${isDone}" id="si_${dayName}_${key}" onclick="toggleSupp('${dayName}','${key}')">
-            <span class="supp-emoji">${item.emoji}</span>
-            <div class="supp-info">
-              <div class="supp-name">${item.name}</div>
-              <div class="supp-dose">${item.dose}</div>
-              ${item.detail ? `<div class="supp-detail">${item.detail}</div>` : ''}
-            </div>
-            <div class="supp-chk"><svg class="chk-svg" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-          </div>`;
-        }
-      });
-
-      if (block.note) blocksHtml += `<div class="block-note">👉 ${block.note}</div>`;
-      blocksHtml += `</div>`;
-    });
-
-    if (type === 'descanso') {
-      blocksHtml += `
-      <div class="no-use-block">
-        <div class="no-use-title">En días sin entrenamiento NO usas</div>
-        <div class="no-use-item">❌ Colágeno — sin estímulo mecánico no activa síntesis</div>
-        <div class="no-use-item">❌ Citrulina — solo para rendimiento inmediato</div>
-        <div class="no-use-item">❌ Clarity — solo cuando lo necesites</div>
-        <div class="no-use-item">❌ Plátano pre-entreno — no hay entreno</div>
-      </div>
-      <div class="truth-box">
-        <div class="truth-box-title">🧠 Lógica del día de descanso</div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>El progreso no pasa solo cuando entrenas.</strong> Pasa cuando recuperas bien.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Mantienes <strong>creatina</strong> (saturación), <strong>omega 3</strong> (desinflamación) y <strong>hialoflex</strong> (articulación).</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Eliminas lo que es solo para rendimiento inmediato. <strong>No tiras dinero donde no aporta.</strong></div></div>
-      </div>`;
-    }
-
-    const todayPill = isToday ? `<span class="today-pill">HOY</span>` : '';
 
     const card = document.createElement('div');
-    card.className = `day-card type-${type}${isToday ? ' open' : ''}`;
+    card.className = `day-card type-${effectiveType}${isToday ? ' open' : ''}`;
     card.id = 'dc_'+dayName;
+
+    const todayPill = isToday ? `<span class="today-pill">HOY</span>` : '';
+    const pctText = pct > 0 ? pct+'%' : effectiveType === 'flexible' ? '—' : '0%';
 
     card.innerHTML = `
       <div class="dc-head" onclick="toggleDayCard('${dayName}')">
         <div class="dc-day-col">
           <div class="dc-day-name">${abbr}${todayPill}</div>
           <div class="dc-type-row">
-            <span class="dc-icon">${proto.icon}</span>
-            <span class="dc-type-name">${proto.label}</span>
+            <span class="dc-icon">${icon}</span>
+            <span class="dc-type-name">${label}</span>
           </div>
         </div>
         <div class="dc-prog-col">
-          <div class="dc-pct-num" id="pct_${dayName}">${pct > 0 ? pct+'%' : '—'}</div>
+          <div class="dc-pct-num" id="pct_${dayName}">${pctText}</div>
           <div class="dc-bar-wrap"><div class="dc-bar-fill" id="bar_${dayName}" style="width:${pct}%"></div></div>
         </div>
         <svg class="dc-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
-      <div class="dc-body">
-        <div class="dc-body-inner">${blocksHtml}</div>
-      </div>`;
+      <div class="dc-body"><div class="dc-body-inner">${bodyContent}</div></div>`;
 
     list.appendChild(card);
   });
@@ -685,14 +668,8 @@ function updateCardProgress(dayName) {
   if (barEl) barEl.style.width = pct+'%';
 }
 
-// ═══════════════════════════════════════════
-// ACCORDION
-// ═══════════════════════════════════════════
 function toggleAccord(id) { document.getElementById(id).classList.toggle('open'); }
 
-// ═══════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════
 function showTab(id, btn) {
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
@@ -700,9 +677,7 @@ function showTab(id, btn) {
   btn.classList.add('active');
 }
 
-// ═══════════════════════════════════════════
-// TIMER
-// ═══════════════════════════════════════════
+// ─── Timer ───
 let timerInterval = null;
 function formatTime(s) { const m=Math.floor(s/60),sec=s%60; return m>0?`${m}:${sec.toString().padStart(2,'0')}`:`0:${sec.toString().padStart(2,'0')}`; }
 function startTimer(seconds, label) {
@@ -711,8 +686,7 @@ function startTimer(seconds, label) {
   const overlay=document.getElementById('timerOverlay'), display=document.getElementById('timerDisplay');
   overlay.classList.add('active');
   document.getElementById('timerLabel').textContent=label||formatTime(seconds);
-  display.textContent=formatTime(t);
-  display.style.color='var(--accent)';
+  display.textContent=formatTime(t); display.style.color='var(--accent)';
   timerInterval=setInterval(()=>{
     t--; display.textContent=formatTime(t);
     if(t<=0){ clearInterval(timerInterval); display.textContent='✓ LISTO'; display.style.color='var(--green)';
@@ -721,10 +695,8 @@ function startTimer(seconds, label) {
 }
 function stopTimer() { clearInterval(timerInterval); document.getElementById('timerOverlay').classList.remove('active'); }
 
-// ═══════════════════════════════════════════
-// GYM EXERCISES
-// ═══════════════════════════════════════════
-const LEVEL_COLOR = { 'Básico': 'var(--green)', 'Intermedio': 'var(--orange)', 'Avanzado': 'var(--red)' };
+// ─── Gym ───
+const LEVEL_COLOR = { 'Básico':'var(--green)', 'Intermedio':'var(--orange)', 'Avanzado':'var(--red)' };
 const GYM_EXERCISES = [
   { id:'e1',  name:'Rotación externa con banda',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Codo pegado al cuerpo. Movimiento lento y controlado.', videoId:'rSCiaMp2K74', timers:[15,30] },
   { id:'e2',  name:'Face Pull (técnica correcta)',     group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Lleva las manos a la cara/orejas. No uses impulso.', videoId:'GcMYpwXGrj8', timers:[15,30] },
@@ -764,7 +736,7 @@ function renderGym() {
     const card = document.createElement('div');
     card.className = 'exercise-card'+(done?' done':'');
     card.id = 'card_'+ex.id;
-    const lvlColor = LEVEL_COLOR[ex.level] || 'var(--muted)';
+    const lvlColor = LEVEL_COLOR[ex.level]||'var(--muted)';
     const timersHtml = ex.timers.length
       ? `<div class="ex-timer-row">${ex.timers.map(t=>`<button class="timer-pill" onclick="startTimer(${t},'${formatTime(t)}')">⏱ ${formatTime(t)}</button>`).join('')}</div>`
       : '';
@@ -782,16 +754,12 @@ function renderGym() {
         <svg class="ex-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="ex-body"><div class="ex-inner">
-        <div class="ex-video-outer">
-          <div class="ex-video-wrap">
-            <div class="ex-video-aspect" id="vwrap_${ex.id}">
-              <div class="ex-video-placeholder" onclick="loadVideo('${ex.id}','${ex.videoId}')">
-                <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#000"><path d="M5 3l14 9-14 9z"/></svg></div>
-                <span style="font-size:10px;color:var(--muted);">Ver en YouTube</span>
-              </div>
-            </div>
+        <div class="ex-video-outer"><div class="ex-video-wrap"><div class="ex-video-aspect" id="vwrap_${ex.id}">
+          <div class="ex-video-placeholder" onclick="loadVideo('${ex.id}','${ex.videoId}')">
+            <div class="play-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#000"><path d="M5 3l14 9-14 9z"/></svg></div>
+            <span style="font-size:10px;color:var(--muted);">Ver en YouTube</span>
           </div>
-        </div>
+        </div></div></div>
         <div class="ex-tip">${ex.tip}</div>
         ${timersHtml}
         <button onclick="toggleGymDone('${ex.id}')" style="width:100%;margin-top:10px;padding:10px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;" id="doneBtn_${ex.id}">
@@ -815,9 +783,6 @@ function toggleGymDone(id) {
   else{card.classList.remove('done');btn.textContent='MARCAR LISTO';}
 }
 
-// ═══════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════
 renderDaysList();
 renderGym();
 </script>
