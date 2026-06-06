@@ -77,8 +77,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
   font-size: 1.9rem; font-weight: 900; line-height: 1;
   text-transform: uppercase; letter-spacing: -0.5px;
 }
-.type-gym .dc-day-name        { }
-.type-gym.open .dc-day-name   { color: var(--accent); }
+.type-gym.open .dc-day-name        { color: var(--accent); }
 .type-natacion.open .dc-day-name   { color: var(--accent2); }
 .type-senderismo.open .dc-day-name { color: var(--green); }
 .type-descanso.open .dc-day-name   { color: var(--purple); }
@@ -127,11 +126,16 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .supp-info { flex: 1; }
 .supp-name { font-size: 13px; font-weight: 500; transition: color 0.2s; }
 .supp-dose { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.supp-detail { font-size: 10px; color: rgba(107,114,128,0.7); margin-top: 2px; font-style: italic; }
 .supp-chk { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
 .supp-item.done .supp-chk { background: var(--accent); border-color: var(--accent); }
 .supp-item.done .supp-name { color: var(--muted); text-decoration: line-through; }
 .chk-svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.15s; }
 .supp-item.done .chk-svg { opacity: 1; }
+
+.food-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border); background: rgba(46,213,115,0.03); }
+.food-item .supp-name { color: var(--green); }
+.food-item .supp-dose { color: rgba(46,213,115,0.6); }
 
 .block-note { font-size: 11px; color: var(--muted); padding: 7px 14px 9px; line-height: 1.5; border-top: 1px solid var(--border); }
 .block-note span { color: var(--text); }
@@ -149,6 +153,9 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .truth-text { flex: 1; line-height: 1.5; color: var(--muted); }
 .truth-text strong { color: var(--text); font-weight: 600; }
 
+/* Dosis summary tag */
+.dosis-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 4px; background: rgba(71,200,255,0.10); color: var(--accent2); border: 1px solid rgba(71,200,255,0.20); margin-left: 6px; vertical-align: middle; }
+
 /* ═══════════════════════════════════════
    PRINCIPIOS ACCORDION
 ═══════════════════════════════════════ */
@@ -160,18 +167,27 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .accord-arr { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
 .accord.open .accord-arr { transform: rotate(180deg); }
 .accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.accord.open .accord-body { max-height: 1000px; }
+.accord.open .accord-body { max-height: 1200px; }
 .accord-inner { border-top: 1px solid var(--border); padding: 14px 16px; }
 .supp-pill-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .supp-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); font-size: 12px; }
 .pill-emoji { font-size: 14px; }
 .pill-name { font-weight: 500; }
 .pill-fn { color: var(--muted); font-size: 11px; }
+.pill-dose { color: var(--accent2); font-size: 10px; margin-left: 2px; }
 .adjust-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
 .adjust-item:last-child { border-bottom: none; padding-bottom: 0; }
 .adj-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .adj-text { flex: 1; color: var(--muted); }
 .adj-text strong { color: var(--text); font-weight: 600; }
+
+/* Dosis table */
+.dosis-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
+.dosis-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.dosis-table td { padding: 8px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--muted); vertical-align: top; }
+.dosis-table td:first-child { color: var(--text); font-weight: 500; }
+.dosis-table td strong { color: var(--accent); }
+.dosis-table tr:last-child td { border-bottom: none; }
 
 /* ═══════════════════════════════════════
    GYM
@@ -187,7 +203,10 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .exercise-card.done .check-icon { opacity: 1; }
 .ex-info { flex: 1; }
 .ex-name { font-size: 14px; font-weight: 500; }
-.ex-sets { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.ex-meta { display: flex; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
+.ex-sets { font-size: 12px; color: var(--muted); }
+.ex-level { font-size: 11px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; }
+.ex-source { font-size: 11px; color: rgba(107,114,128,0.5); }
 .exercise-card.done .ex-name { color: var(--muted); text-decoration: line-through; }
 .ex-expand { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
 .exercise-card.open .ex-expand { transform: rotate(180deg); }
@@ -195,7 +214,6 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 .exercise-card.open .ex-body { max-height: 500px; }
 .ex-inner { border-top: 1px solid var(--border); padding: 14px 16px; }
 
-/* VIDEO — small centered */
 .ex-video-outer { display: flex; justify-content: center; margin-bottom: 12px; }
 .ex-video-wrap { width: 60%; border-radius: 10px; overflow: hidden; background: #000; }
 .ex-video-aspect { position: relative; padding-bottom: 56.25%; }
@@ -250,6 +268,31 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
     <!-- PRINCIPIOS -->
     <div class="section-label" style="margin-top:1.5rem;">Principios del plan</div>
 
+    <!-- DOSIS REALES -->
+    <div class="accord" id="acc0">
+      <div class="accord-head" onclick="toggleAccord('acc0')">
+        <span class="accord-icon">📋</span>
+        <span class="accord-title">Dosis exactas — etiqueta real</span>
+        <svg class="accord-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="accord-body"><div class="accord-inner">
+        <table class="dosis-table">
+          <thead><tr><th>Suplemento</th><th>Por porción</th><th>Meta / día</th><th>Cápsulas</th></tr></thead>
+          <tbody>
+            <tr><td>💪 Colágeno hidrolizado</td><td>Péptidos de res</td><td><strong>12–15 g</strong></td><td>Polvo en agua</td></tr>
+            <tr><td>⚙️ Creatina monohidratada</td><td>5 g / scoop</td><td><strong>5 g fijos</strong></td><td>1 scoop</td></tr>
+            <tr><td>🐟 Omega 3 (salmón noruego)</td><td>EPA 300 mg + DHA 200 mg = <strong>500 mg EPA+DHA</strong></td><td>1–1.5 g EPA+DHA</td><td><strong>2–3 caps</strong></td></tr>
+            <tr><td>🦴 Hialoflex</td><td>Colágeno tipo II 40 mg + Hialurónico 80 mg</td><td>1 cápsula</td><td><strong>1 cap</strong></td></tr>
+            <tr><td>⚡ Citrulina</td><td>1,200 mg / cápsula</td><td>5–6 g</td><td><strong>4–5 caps</strong></td></tr>
+            <tr><td>🟠 Cúrcuma + Vit C</td><td>Según etiqueta</td><td>1 cápsula</td><td><strong>1 cap</strong></td></tr>
+            <tr><td>🍌 Plátano (natación)</td><td>Carbohidrato natural</td><td>1 plátano</td><td>Con colágeno 6:00 am</td></tr>
+          </tbody>
+        </table>
+        <div class="truth-item" style="margin-top:8px;"><div class="truth-bullet"></div><div class="truth-text"><strong>Arginina eliminada:</strong> la citrulina (1,200 mg/cap) ya se convierte en arginina con mejor biodisponibilidad. No duplicas.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Omega 3 verificado:</strong> 500 mg EPA+DHA por cápsula. Con 2–3 caps llegas a 1–1.5 g objetivo.</div></div>
+      </div></div>
+    </div>
+
     <div class="accord" id="acc1">
       <div class="accord-head" onclick="toggleAccord('acc1')">
         <span class="accord-icon">🧠</span>
@@ -258,18 +301,19 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
       </div>
       <div class="accord-body"><div class="accord-inner">
         <div class="supp-pill-grid">
-          <div class="supp-pill"><span class="pill-emoji">💪</span><span class="pill-name">Colágeno + Vit C</span><span class="pill-fn">→ repara tendón</span></div>
-          <div class="supp-pill"><span class="pill-emoji">⚙️</span><span class="pill-name">Creatina</span><span class="pill-fn">→ recuperación muscular</span></div>
-          <div class="supp-pill"><span class="pill-emoji">🐟</span><span class="pill-name">Omega 3</span><span class="pill-fn">→ antiinflamatorio base</span></div>
-          <div class="supp-pill"><span class="pill-emoji">🦴</span><span class="pill-name">Hialoflex</span><span class="pill-fn">→ soporte articular</span></div>
-          <div class="supp-pill"><span class="pill-emoji">🟠</span><span class="pill-name">Cúrcuma</span><span class="pill-fn">→ control inflamación</span></div>
-          <div class="supp-pill"><span class="pill-emoji">⚡</span><span class="pill-name">Citrulina</span><span class="pill-fn">→ vasodilatación real</span></div>
-          <div class="supp-pill"><span class="pill-emoji">🔥</span><span class="pill-name">Arginina</span><span class="pill-fn">→ sinergia con citrulina</span></div>
-          <div class="supp-pill"><span class="pill-emoji">🧠</span><span class="pill-name">Clarity</span><span class="pill-fn">→ enfoque mental</span></div>
+          <div class="supp-pill"><span class="pill-emoji">💪</span><span class="pill-name">Colágeno + Vit C</span><span class="pill-fn">→ repara tendón</span><span class="pill-dose">12–15 g</span></div>
+          <div class="supp-pill"><span class="pill-emoji">⚙️</span><span class="pill-name">Creatina</span><span class="pill-fn">→ recuperación muscular</span><span class="pill-dose">5 g diario</span></div>
+          <div class="supp-pill"><span class="pill-emoji">🐟</span><span class="pill-name">Omega 3</span><span class="pill-fn">→ antiinflamatorio base</span><span class="pill-dose">2–3 caps</span></div>
+          <div class="supp-pill"><span class="pill-emoji">🦴</span><span class="pill-name">Hialoflex</span><span class="pill-fn">→ soporte articular</span><span class="pill-dose">1 cap</span></div>
+          <div class="supp-pill"><span class="pill-emoji">🟠</span><span class="pill-name">Cúrcuma</span><span class="pill-fn">→ control inflamación</span><span class="pill-dose">1 cap</span></div>
+          <div class="supp-pill"><span class="pill-emoji">⚡</span><span class="pill-name">Citrulina</span><span class="pill-fn">→ vasodilatación real</span><span class="pill-dose">4–5 caps</span></div>
+          <div class="supp-pill"><span class="pill-emoji">🧠</span><span class="pill-name">Clarity</span><span class="pill-fn">→ enfoque mental</span><span class="pill-dose">1 cap</span></div>
+          <div class="supp-pill"><span class="pill-emoji">🍌</span><span class="pill-name">Plátano</span><span class="pill-fn">→ energía pre-natación</span><span class="pill-dose">6:00 am</span></div>
         </div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>La citrulina hace el trabajo pesado.</strong> La arginina suma, no lidera.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Colágeno + estímulo mecánico</strong> es lo que realmente regenera el tendón.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Cada suplemento tiene función clara. <strong>No duplicas nada.</strong></div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Citrulina → arginina in vivo.</strong> No necesitas arginina por separado. Se eliminó del plan.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Colágeno + estímulo mecánico</strong> es lo que realmente regenera el tendón. La Vit C activa la síntesis.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Hialoflex ≠ colágeno estructural.</strong> Es colágeno tipo II: modulación inmune articular, no relleno de tendón.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Cada suplemento tiene función clara. <strong>Sin duplicados, sin dinero tirado.</strong></div></div>
       </div></div>
     </div>
 
@@ -281,7 +325,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
       </div>
       <div class="accord-body"><div class="accord-inner">
         <div class="adjust-item"><span class="adj-icon">🟠</span><div class="adj-text"><strong>Cúrcuma + Vit C →</strong> 2 al día (mañana + noche)</div></div>
-        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja intensidad</strong> en Citrulina y Arginina</div></div>
+        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja intensidad</strong> en Citrulina — 3 caps bastan</div></div>
         <div class="adjust-item"><span class="adj-icon">🧠</span><div class="adj-text"><strong>Mantén movimiento</strong> — clave para recuperación del tendón. No pares.</div></div>
         <div class="adjust-item"><span class="adj-icon">❌</span><div class="adj-text">Evita press overhead pesado. Prioriza <strong>excéntricos y rehab</strong>.</div></div>
       </div></div>
@@ -294,10 +338,10 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
         <svg class="accord-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="accord-body"><div class="accord-inner">
-        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text"><strong>Mantén citrulina como base</strong> — es el motor.</div></div>
-        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text">Usa arginina <strong>SOLO como complemento</strong>, no como protagonista.</div></div>
-        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text">Considera <strong>citrulina en polvo</strong> — mejor absorción que cápsulas.</div></div>
-        <div class="adjust-item"><span class="adj-icon">⏱️</span><div class="adj-text">Si cambias horario: mueve <strong>todo el bloque PRE junto</strong>. Colágeno → 30–60 min antes. Citrulina + arginina → 20–30 min antes.</div></div>
+        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text"><strong>Citrulina es el motor.</strong> Mantén 4–5 caps (≈ 5–6 g) como base sólida.</div></div>
+        <div class="adjust-item"><span class="adj-icon">✔</span><div class="adj-text">Considera <strong>citrulina en polvo</strong> — mejor absorción que cápsulas, más fácil llegar a 6 g.</div></div>
+        <div class="adjust-item"><span class="adj-icon">🐟</span><div class="adj-text">Omega 3 con <strong>la comida más grasa del día</strong> — mejora absorción hasta 50%.</div></div>
+        <div class="adjust-item"><span class="adj-icon">⏱️</span><div class="adj-text">Si cambias horario: mueve <strong>todo el bloque PRE junto</strong>. Colágeno → 30–60 min antes. Citrulina → 20–30 min antes.</div></div>
       </div></div>
     </div>
 
@@ -308,11 +352,11 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
         <svg class="accord-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="accord-body"><div class="accord-inner">
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>PRE-entreno:</strong> Colágeno + Cúrcuma + Citrulina (+ Arginina opcional)</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>POST:</strong> Creatina + Omega 3 + Hialoflex</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Base diaria:</strong> antiinflamación + recuperación articular</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>PRE-entreno:</strong> Colágeno 12–15 g + Cúrcuma + Citrulina 4–5 caps</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>POST:</strong> Creatina 5 g + Omega 3 2–3 caps + Hialoflex 1 cap</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Natación extra:</strong> 🍌 plátano a las 6:00 am junto al colágeno</div></div>
         <div style="margin-top:10px;padding:10px 12px;background:rgba(232,255,71,0.05);border:1px solid rgba(232,255,71,0.12);border-radius:10px;font-size:12px;color:var(--muted);line-height:1.8;">
-          ✔ No duplicas nada &nbsp;·&nbsp; ✔ Fisiología real &nbsp;·&nbsp; ✔ Prioriza reparación tendón &nbsp;·&nbsp; ✔ Sin sobrecargar el sistema
+          ✔ Sin arginina (citrulina la sustituye) &nbsp;·&nbsp; ✔ Omega 3 verificado 500 mg/cap &nbsp;·&nbsp; ✔ Fisiología real &nbsp;·&nbsp; ✔ Sin sobrecargar
         </div>
       </div></div>
     </div>
@@ -341,7 +385,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 // ═══════════════════════════════════════════
 const DAYS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const DAY_SHORT = ["DOM","LUN","MAR","MIÉ","JUE","VIE","SÁB"];
-const DISPLAY_ORDER = [1,2,3,4,5,6,0]; // Mon → Sun
+const DISPLAY_ORDER = [1,2,3,4,5,6,0];
 const today = DAYS[new Date().getDay()];
 
 document.getElementById('dayName').textContent = today.toUpperCase();
@@ -352,83 +396,136 @@ const DAY_TYPES = {
   'Jueves':'natacion', 'Viernes':'gym', 'Sábado':'senderismo', 'Domingo':'descanso'
 };
 
+// ─── PROTOCOLS (dosis actualizadas con info real de etiquetas) ───
 const PROTOCOLS = {
+
+  // ════════════════════════════════
+  // NATACIÓN — Mar / Mié / Jue
+  // ════════════════════════════════
   natacion: {
-    label:'Natación', icon:'🏊', badgeClass:'badge-natacion',
+    label:'Natación', icon:'🏊',
     blocks:[
-      { tag:'pre1', time:'6:00 am — PRE', key:true, items:[
-        { id:'col', name:'Colágeno', dose:'12–15 g', emoji:'💪' },
-        { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', emoji:'🟠' },
-      ]},
-      { tag:'pre2', time:'6:30 am — PRE rendimiento', items:[
-        { id:'cit', name:'Citrulina', dose:'5–6 cápsulas', emoji:'⚡' },
-        { id:'arg', name:'Arginina', dose:'2–3 cápsulas', emoji:'🔥' },
-      ]},
-      { tag:'post', time:'POST — Desayuno', items:[
-        { id:'cre', name:'Creatina', dose:'5 g', emoji:'⚙️' },
-        { id:'ome', name:'Omega 3', dose:'2 cápsulas', emoji:'🐟' },
-        { id:'hia', name:'Hialoflex', dose:'1 cápsula', emoji:'🦴' },
-      ]},
-      { tag:'opt', time:'Opcional', optional:true, items:[
-        { id:'cla', name:'Clarity', dose:'1 cápsula', emoji:'🧠' },
-      ]},
+      {
+        tag:'pre1', time:'6:00 am — PRE tendón', key:true,
+        note:'Colágeno + Vit C 30–60 min antes del agua. El plátano da glucosa sin peso en el estómago.',
+        items:[
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · activar con Vit C', emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
+          { id:'pla', name:'Plátano', dose:'1 pieza', detail:'Potasio + glucosa · fácil digestión', emoji:'🍌', food:true },
+        ]
+      },
+      {
+        tag:'pre2', time:'6:30 am — PRE rendimiento', 
+        note:'20–30 min antes del agua. La citrulina reemplaza arginina con mejor biodisponibilidad.',
+        items:[
+          { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · vasodilatación + flujo muscular', emoji:'⚡' },
+        ]
+      },
+      {
+        tag:'post', time:'POST — Desayuno',
+        note:'Omega 3 con la comida más grasa para mejor absorción.',
+        items:[
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Micronizada · recuperación muscular', emoji:'⚙️' },
+          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA por cápsula · aceite salmón noruego', emoji:'🐟' },
+          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II 40 mg + Hialurónico 80 mg · articulación', emoji:'🦴' },
+        ]
+      },
+      {
+        tag:'opt', time:'Opcional', optional:true,
+        items:[
+          { id:'cla', name:'Clarity', dose:'1 cápsula', detail:'Hongo Melena de León + L-Tirosina + Vitaminas B · solo si lo necesitas', emoji:'🧠' },
+        ]
+      },
     ]
   },
+
+  // ════════════════════════════════
+  // GYM — Lun / Vie
+  // ════════════════════════════════
   gym: {
-    label:'Gym + Core', icon:'🏋️', badgeClass:'badge-gym',
+    label:'Gym + Core', icon:'🏋️',
     blocks:[
-      { tag:'pre', time:'30–60 min antes — PRE', key:true, items:[
-        { id:'col', name:'Colágeno', dose:'12–15 g', emoji:'💪' },
-        { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', emoji:'🟠' },
-        { id:'cit', name:'Citrulina', dose:'6–7 cápsulas', emoji:'⚡' },
-        { id:'arg', name:'Arginina', dose:'3 cápsulas', emoji:'🔥' },
-      ]},
-      { tag:'post', time:'POST', items:[
-        { id:'cre', name:'Creatina', dose:'5 g', emoji:'⚙️' },
-        { id:'ome', name:'Omega 3', dose:'2 cápsulas', emoji:'🐟' },
-        { id:'hia', name:'Hialoflex', dose:'1 cápsula', emoji:'🦴' },
-      ]},
+      {
+        tag:'pre', time:'30–60 min antes — PRE', key:true,
+        note:'Colágeno primero (necesita más tiempo). Citrulina 20–30 min antes del entreno.',
+        items:[
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · repara tendón', emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
+          { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · reemplaza arginina con mejor biodisponibilidad', emoji:'⚡' },
+        ]
+      },
+      {
+        tag:'post', time:'POST',
+        note:'Omega 3 con la comida más grasa del día.',
+        items:[
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Micronizada · siempre diario, incluso en descanso', emoji:'⚙️' },
+          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · antiinflamatorio base', emoji:'🐟' },
+          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II + Hialurónico · soporte articular', emoji:'🦴' },
+        ]
+      },
     ]
   },
+
+  // ════════════════════════════════
+  // SENDERISMO — Sáb / Dom
+  // ════════════════════════════════
   senderismo: {
-    label:'Senderismo', icon:'🚶', badgeClass:'badge-senderismo',
+    label:'Senderismo', icon:'🚶',
     blocks:[
-      { tag:'pre', time:'Antes de salir', key:true, items:[
-        { id:'col', name:'Colágeno', dose:'12–15 g', emoji:'💪' },
-        { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', emoji:'🟠' },
-        { id:'ome', name:'Omega 3', dose:'1–2 cápsulas', emoji:'🐟' },
-      ]},
-      { tag:'opt', time:'Opcional — rendimiento extra', optional:true, items:[
-        { id:'cit', name:'Citrulina', dose:'4–5 cápsulas', emoji:'⚡' },
-        { id:'arg', name:'Arginina', dose:'2 cápsulas', emoji:'🔥' },
-      ]},
-      { tag:'post', time:'Después', items:[
-        { id:'cre', name:'Creatina', dose:'5 g', emoji:'⚙️' },
-      ]},
+      {
+        tag:'pre', time:'Antes de salir', key:true,
+        note:'Colágeno con Vit C 30–60 min antes. Omega 3 con algo de grasa (ej. nueces).',
+        items:[
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · tendones y articulaciones', emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio + síntesis colágeno', emoji:'🟠' },
+          { id:'ome', name:'Omega 3', dose:'1–2 cápsulas', detail:'500 mg EPA+DHA/cap · soporte articular en caminata larga', emoji:'🐟' },
+        ]
+      },
+      {
+        tag:'opt', time:'Opcional — si quieres rendimiento extra', optional:true,
+        note:'Solo si la ruta es larga o exigente.',
+        items:[
+          { id:'cit', name:'Citrulina', dose:'3–4 cápsulas (≈ 4–5 g)', detail:'1,200 mg/cap · mejor flujo en subidas', emoji:'⚡' },
+        ]
+      },
+      {
+        tag:'post', time:'Después',
+        items:[
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Recuperación · diario sin excepción', emoji:'⚙️' },
+          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Post-caminata larga · recuperación articular', emoji:'🦴' },
+        ]
+      },
     ]
   },
+
+  // ════════════════════════════════
+  // DESCANSO
+  // ════════════════════════════════
   descanso: {
-    label:'Descanso', icon:'🛌', badgeClass:'badge-descanso',
+    label:'Descanso', icon:'🛌',
     blocks:[
-      { tag:'mañana', time:'🌅 Mañana — con desayuno', key:true,
-        note:'Todo con comida (a mitad o al final)',
+      {
+        tag:'manana', time:'🌅 Mañana — con desayuno', key:true,
+        note:'Todo con comida. El progreso también pasa cuando recuperas bien.',
         items:[
-          { id:'cre', name:'Creatina', dose:'5 g', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2 cápsulas', emoji:'🐟' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', emoji:'🦴' },
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Siempre · mantiene saturación muscular', emoji:'⚙️' },
+          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · desinflamación en reposo', emoji:'🐟' },
+          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Soporte articular diario', emoji:'🦴' },
         ]
       },
-      { tag:'noche', time:'🌇 Tarde / Noche', optional:true,
-        note:'Solo si hay dolor, inflamación, o vienes de días cargados',
+      {
+        tag:'noche', time:'🌇 Tarde / Noche', optional:true,
+        note:'Solo si hay dolor, inflamación, o vienes de días cargados.',
         items:[
-          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', emoji:'🟠' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio de recuperación', emoji:'🟠' },
         ]
       },
-      { tag:'rehab', time:'⚠️ Si haces rehab de hombro', exc:true,
-        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo en el tendón.',
+      {
+        tag:'rehab', time:'⚠️ Si haces rehab de hombro', exc:true,
+        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo mecánico en el tendón.',
         items:[
-          { id:'col', name:'Colágeno', dose:'10–12 g', emoji:'💪' },
-          { id:'cur2', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', emoji:'🟠' },
+          { id:'col', name:'Colágeno hidrolizado', dose:'10–12 g en agua', detail:'Dosis menor · suficiente para rehab', emoji:'💪' },
+          { id:'cur2', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis', emoji:'🟠' },
         ]
       },
     ]
@@ -438,8 +535,8 @@ const PROTOCOLS = {
 // ═══════════════════════════════════════════
 // STORAGE
 // ═══════════════════════════════════════════
-const getSuppState = d => JSON.parse(localStorage.getItem('supp_'+d)||'{}');
-const setSuppState = (d,s) => localStorage.setItem('supp_'+d, JSON.stringify(s));
+const getSuppState = d => { try { return JSON.parse(localStorage.getItem('supp_'+d)||'{}'); } catch(e) { return {}; } };
+const setSuppState = (d,s) => { try { localStorage.setItem('supp_'+d, JSON.stringify(s)); } catch(e) {} };
 
 function getDayProgress(dayName) {
   const type = DAY_TYPES[dayName] || 'descanso';
@@ -448,6 +545,7 @@ function getDayProgress(dayName) {
   let total=0, done=0;
   proto.blocks.forEach(b => {
     if (!b.optional && !b.exc) b.items.forEach(item => {
+      if (item.food) return; // no contamos alimentos en progreso
       total++;
       if (state[b.tag+'_'+item.id]) done++;
     });
@@ -469,20 +567,15 @@ function renderDaysList() {
     const proto = PROTOCOLS[type];
     const isToday = dayName === today;
     const { total, done, pct } = getDayProgress(dayName);
-
-    const card = document.createElement('div');
-    card.className = `day-card type-${type}${isToday ? ' open' : ''}`;
-    card.id = 'dc_'+dayName;
-
-    // Build blocks HTML
     const state = getSuppState(dayName);
+
     let blocksHtml = '';
 
     if (type === 'descanso') {
       blocksHtml += `<div class="goal-chips">
         <div class="goal-chip good">✔ Recuperación</div>
         <div class="goal-chip good">✔ Desinflamación</div>
-        <div class="goal-chip good">✔ Mantener saturación</div>
+        <div class="goal-chip good">✔ Saturación creatina</div>
         <div class="goal-chip bad">❌ Sin pre-entreno</div>
       </div>`;
     }
@@ -493,18 +586,34 @@ function renderDaysList() {
                     : block.exc ? '<span class="badge-exc">EXCEPCIÓN</span>' : '';
       blocksHtml += `<div class="time-block">
         <div class="time-block-head"><span class="time-lbl">${block.time}</span>${badgeHtml}</div>`;
+
       block.items.forEach(item => {
-        const key = block.tag+'_'+item.id;
-        const isDone = state[key] ? ' done' : '';
-        blocksHtml += `<div class="supp-item${isDone}" id="si_${dayName}_${key}" onclick="toggleSupp('${dayName}','${key}')">
-          <span class="supp-emoji">${item.emoji}</span>
-          <div class="supp-info">
-            <div class="supp-name">${item.name}</div>
-            <div class="supp-dose">${item.dose}</div>
-          </div>
-          <div class="supp-chk"><svg class="chk-svg" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
-        </div>`;
+        if (item.food) {
+          // Alimento — sin checkbox
+          blocksHtml += `<div class="food-item">
+            <span class="supp-emoji">${item.emoji}</span>
+            <div class="supp-info">
+              <div class="supp-name">${item.name}</div>
+              <div class="supp-dose">${item.dose}</div>
+              ${item.detail ? `<div class="supp-detail">${item.detail}</div>` : ''}
+            </div>
+            <span style="font-size:10px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;">ALIMENTO</span>
+          </div>`;
+        } else {
+          const key = block.tag+'_'+item.id;
+          const isDone = state[key] ? ' done' : '';
+          blocksHtml += `<div class="supp-item${isDone}" id="si_${dayName}_${key}" onclick="toggleSupp('${dayName}','${key}')">
+            <span class="supp-emoji">${item.emoji}</span>
+            <div class="supp-info">
+              <div class="supp-name">${item.name}</div>
+              <div class="supp-dose">${item.dose}</div>
+              ${item.detail ? `<div class="supp-detail">${item.detail}</div>` : ''}
+            </div>
+            <div class="supp-chk"><svg class="chk-svg" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width="2.5"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>`;
+        }
       });
+
       if (block.note) blocksHtml += `<div class="block-note">👉 ${block.note}</div>`;
       blocksHtml += `</div>`;
     });
@@ -513,20 +622,24 @@ function renderDaysList() {
       blocksHtml += `
       <div class="no-use-block">
         <div class="no-use-title">En días sin entrenamiento NO usas</div>
-        <div class="no-use-item">❌ Colágeno — sin estímulo mecánico no aplica</div>
-        <div class="no-use-item">❌ Citrulina</div>
-        <div class="no-use-item">❌ Arginina</div>
-        <div class="no-use-item">❌ Clarity</div>
+        <div class="no-use-item">❌ Colágeno — sin estímulo mecánico no activa síntesis</div>
+        <div class="no-use-item">❌ Citrulina — solo para rendimiento inmediato</div>
+        <div class="no-use-item">❌ Clarity — solo cuando lo necesites</div>
+        <div class="no-use-item">❌ Plátano pre-entreno — no hay entreno</div>
       </div>
       <div class="truth-box">
         <div class="truth-box-title">🧠 Lógica del día de descanso</div>
         <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>El progreso no pasa solo cuando entrenas.</strong> Pasa cuando recuperas bien.</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Mantienes lo que <strong>recupera</strong> (creatina), <strong>desinflamaciona</strong> (omega 3 + cúrcuma) y <strong>protege articulación</strong> (hialoflex).</div></div>
-        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Eliminas lo que es <strong>solo para rendimiento inmediato.</strong> No tiras dinero donde no aporta.</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Mantienes <strong>creatina</strong> (saturación), <strong>omega 3</strong> (desinflamación) y <strong>hialoflex</strong> (articulación).</div></div>
+        <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text">Eliminas lo que es solo para rendimiento inmediato. <strong>No tiras dinero donde no aporta.</strong></div></div>
       </div>`;
     }
 
     const todayPill = isToday ? `<span class="today-pill">HOY</span>` : '';
+
+    const card = document.createElement('div');
+    card.className = `day-card type-${type}${isToday ? ' open' : ''}`;
+    card.id = 'dc_'+dayName;
 
     card.innerHTML = `
       <div class="dc-head" onclick="toggleDayCard('${dayName}')">
@@ -565,10 +678,10 @@ function toggleSupp(dayName, key) {
 }
 
 function updateCardProgress(dayName) {
-  const { done, total, pct } = getDayProgress(dayName);
+  const { pct } = getDayProgress(dayName);
   const pctEl = document.getElementById('pct_'+dayName);
   const barEl = document.getElementById('bar_'+dayName);
-  if (pctEl) pctEl.textContent = pct > 0 ? pct+'%' : done===0&&total>0 ? '0%' : '—';
+  if (pctEl) pctEl.textContent = pct+'%';
   if (barEl) barEl.style.width = pct+'%';
 }
 
@@ -599,6 +712,7 @@ function startTimer(seconds, label) {
   overlay.classList.add('active');
   document.getElementById('timerLabel').textContent=label||formatTime(seconds);
   display.textContent=formatTime(t);
+  display.style.color='var(--accent)';
   timerInterval=setInterval(()=>{
     t--; display.textContent=formatTime(t);
     if(t<=0){ clearInterval(timerInterval); display.textContent='✓ LISTO'; display.style.color='var(--green)';
@@ -610,35 +724,27 @@ function stopTimer() { clearInterval(timerInterval); document.getElementById('ti
 // ═══════════════════════════════════════════
 // GYM EXERCISES
 // ═══════════════════════════════════════════
-const GYM_EXERCISES = [
-  // Hombro — Activación
-  { id:'e1',  name:'Rotación externa con banda',       group:'Hombro — Activación',  sets:'3×15',     level:'Básico',      source:'E3 Rehab',        tip:'Codo pegado al cuerpo. Movimiento lento y controlado.',           videoId:'rSCiaMp2K74', timers:[15,30] },
-  { id:'e2',  name:'Face Pull (técnica correcta)',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',      source:'E3 Rehab',        tip:'Lleva las manos a la cara/orejas. No uses impulso.',             videoId:'GcMYpwXGrj8', timers:[15,30] },
-  { id:'e3',  name:'Y-T-W en banco',                   group:'Hombro — Activación',  sets:'2×12',     level:'Básico',      source:'Squat University', tip:'Peso muy ligero. Activa trapecio bajo y romboides.',             videoId:'2B2LWHlhqNA', timers:[] },
-  { id:'e4',  name:'Wall Slides',                      group:'Hombro — Activación',  sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Mantén contacto con la pared. No arquees la espalda.',           videoId:'y8iA0lP8r3c', timers:[] },
-  // Hombro — Estabilidad
-  { id:'e5',  name:'Isométricos de rotación externa',  group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Básico',      source:'E3 Rehab',        tip:'Presión constante contra banda o pared.',                        videoId:'R0J_aPs-Jgo', timers:[30,45] },
-  { id:'e6',  name:'Plancha con toque de hombro',      group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio',  source:'E3 Rehab',        tip:'Evita rotación de cadera.',                                      videoId:'LY0Gm3L6QIs', timers:[30,45] },
-  { id:'e7',  name:'Suitcase Carry',                   group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio',  source:'Squat University', tip:'Mantén el torso recto. No te inclines.',                        videoId:'4Xg7s7vH3bY', timers:[30,45] },
-  // Hombro — Fuerza
-  { id:'e8',  name:'Remo con mancuerna',               group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Retracción escapular al final.',                                 videoId:'pYcpY20QaE8', timers:[] },
-  { id:'e9',  name:'Elevaciones laterales',            group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Peso ligero. Control total.',                                    videoId:'3VcKaXpzqRo', timers:[] },
-  { id:'e10', name:'Press con mancuernas (neutral)',   group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio',  source:'Bob & Brad',      tip:'Solo si no hay dolor.',                                          videoId:'B-aVuyhvLHU', timers:[] },
-  { id:'e11', name:'Landmine Press',                   group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio',  source:'Squat University', tip:'Movimiento en diagonal más seguro.',                            videoId:'3u6Yh3f5c8w', timers:[] },
-  // Hombro — Excéntricos
-  { id:'e12', name:'Rotación externa excéntrica',      group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio',  source:'E3 Rehab',        tip:'4 segundos en la bajada.',                                       videoId:'H6l0GJZ4r0k', timers:[] },
-  { id:'e13', name:'Elevación excéntrica',             group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio',  source:'E3 Rehab',        tip:'Sube con dos brazos, baja con uno.',                             videoId:'Z2k1s9v2k6U', timers:[] },
-  { id:'e14', name:'Side-Lying External Rotation',    group:'Hombro — Excéntricos', sets:'3×12',     level:'Básico',      source:'E3 Rehab',        tip:'Movimiento lento, sin impulso.',                                 videoId:'6u8QpNmQy_g', timers:[] },
-  // Core — Base
-  { id:'e15', name:'Dead Bug',                         group:'Core — Base',          sets:'3×10',     level:'Básico',      source:'E3 Rehab',        tip:'Zona lumbar siempre pegada al suelo.',                           videoId:'4XLEnwUr1d8', timers:[] },
-  { id:'e16', name:'Bird Dog',                         group:'Core — Base',          sets:'3×10',     level:'Básico',      source:'E3 Rehab',        tip:'Pausa arriba 2 seg.',                                            videoId:'wiFNA3sqjCA', timers:[] },
-  { id:'e17', name:'Plancha lateral',                  group:'Core — Base',          sets:'3×30 seg', level:'Básico',      source:'E3 Rehab',        tip:'Cuerpo en línea recta.',                                         videoId:'_rdfjFSFKcM', timers:[30,45] },
-  // Core — Anti-Rotación
-  { id:'e18', name:'Pallof Press Hold',                group:'Core — Anti-Rotación', sets:'3×20 seg', level:'Básico',      source:'E3 Rehab',        tip:'Resiste la rotación.',                                           videoId:'AH_QZLm_0-s', timers:[20,30] },
-];
-
-// Level color mapping
 const LEVEL_COLOR = { 'Básico': 'var(--green)', 'Intermedio': 'var(--orange)', 'Avanzado': 'var(--red)' };
+const GYM_EXERCISES = [
+  { id:'e1',  name:'Rotación externa con banda',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Codo pegado al cuerpo. Movimiento lento y controlado.', videoId:'rSCiaMp2K74', timers:[15,30] },
+  { id:'e2',  name:'Face Pull (técnica correcta)',     group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Lleva las manos a la cara/orejas. No uses impulso.', videoId:'GcMYpwXGrj8', timers:[15,30] },
+  { id:'e3',  name:'Y-T-W en banco',                  group:'Hombro — Activación',  sets:'2×12',     level:'Básico',     source:'Squat University', tip:'Peso muy ligero. Activa trapecio bajo y romboides.', videoId:'2B2LWHlhqNA', timers:[] },
+  { id:'e4',  name:'Wall Slides',                     group:'Hombro — Activación',  sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Mantén contacto con la pared. No arquees la espalda.', videoId:'y8iA0lP8r3c', timers:[] },
+  { id:'e5',  name:'Isométricos de rotación externa', group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Presión constante contra banda o pared.', videoId:'R0J_aPs-Jgo', timers:[30,45] },
+  { id:'e6',  name:'Plancha con toque de hombro',     group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'E3 Rehab',         tip:'Evita rotación de cadera.', videoId:'LY0Gm3L6QIs', timers:[30,45] },
+  { id:'e7',  name:'Suitcase Carry',                  group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'Squat University', tip:'Mantén el torso recto. No te inclines.', videoId:'4Xg7s7vH3bY', timers:[30,45] },
+  { id:'e8',  name:'Remo con mancuerna',              group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Retracción escapular al final.', videoId:'pYcpY20QaE8', timers:[] },
+  { id:'e9',  name:'Elevaciones laterales',           group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Peso ligero. Control total.', videoId:'3VcKaXpzqRo', timers:[] },
+  { id:'e10', name:'Press con mancuernas (neutral)',  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Bob & Brad',       tip:'Solo si no hay dolor.', videoId:'B-aVuyhvLHU', timers:[] },
+  { id:'e11', name:'Landmine Press',                  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Squat University', tip:'Movimiento en diagonal más seguro.', videoId:'3u6Yh3f5c8w', timers:[] },
+  { id:'e12', name:'Rotación externa excéntrica',     group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'4 segundos en la bajada.', videoId:'H6l0GJZ4r0k', timers:[] },
+  { id:'e13', name:'Elevación excéntrica',            group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'Sube con dos brazos, baja con uno.', videoId:'Z2k1s9v2k6U', timers:[] },
+  { id:'e14', name:'Side-Lying External Rotation',   group:'Hombro — Excéntricos', sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Movimiento lento, sin impulso.', videoId:'6u8QpNmQy_g', timers:[] },
+  { id:'e15', name:'Dead Bug',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Zona lumbar siempre pegada al suelo.', videoId:'4XLEnwUr1d8', timers:[] },
+  { id:'e16', name:'Bird Dog',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Pausa arriba 2 seg.', videoId:'wiFNA3sqjCA', timers:[] },
+  { id:'e17', name:'Plancha lateral',                 group:'Core — Base',          sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Cuerpo en línea recta.', videoId:'_rdfjFSFKcM', timers:[30,45] },
+  { id:'e18', name:'Pallof Press Hold',               group:'Core — Anti-Rotación', sets:'3×20 seg', level:'Básico',     source:'E3 Rehab',         tip:'Resiste la rotación.', videoId:'AH_QZLm_0-s', timers:[20,30] },
+];
 
 function renderGym() {
   const list = document.getElementById('gymList');
