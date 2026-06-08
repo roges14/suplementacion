@@ -7,205 +7,226 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0b0e; --bg2: #111318; --bg3: #181c24;
-  --accent: #e8ff47; --accent2: #47c8ff;
-  --red: #ff4757; --green: #2ed573; --orange: #ffa502; --purple: #a78bfa;
-  --text: #f0f2f7; --muted: #6b7280;
-  --border: rgba(255,255,255,0.07); --card: #13161f;
+  --bg:#0a0b0e; --bg2:#111318; --bg3:#181c24;
+  --accent:#e8ff47; --accent2:#47c8ff;
+  --red:#ff4757; --green:#2ed573; --orange:#ffa502; --purple:#a78bfa;
+  --text:#f0f2f7; --muted:#6b7280;
+  --border:rgba(255,255,255,0.07); --card:#13161f;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-.header { padding: 1.4rem 1.5rem 1.2rem; }
-.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.logo { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
-.date-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); background: rgba(232,255,71,0.08); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(232,255,71,0.2); }
-.hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.6rem, 10vw, 5rem); font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -1px; white-space: nowrap; }
-.hero-title span { color: var(--accent); }
+/* ── HEADER ── */
+.header{padding:1.4rem 1.5rem 1.2rem;}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--muted);}
+.date-badge{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);background:rgba(232,255,71,0.08);padding:5px 12px;border-radius:20px;border:1px solid rgba(232,255,71,0.2);}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.6rem,10vw,5rem);font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:-1px;white-space:nowrap;}
+.hero-title span{color:var(--accent);}
 
-.tabs-wrap { padding: 0.5rem 1.5rem; display: flex; gap: 4px; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.tab-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 8px; border: none; border-radius: 10px; background: transparent; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
-.tab-btn.active { background: var(--accent); color: #000; }
-.tab-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+/* ── TABS ── */
+.tabs-wrap{padding:0.5rem 1.5rem;display:flex;gap:4px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.tab-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 8px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.tab-btn.active{background:var(--accent);color:#000;}
+.tab-btn svg{width:16px;height:16px;flex-shrink:0;}
 
-.section { display: none; }
-.section.active { display: block; }
-.sec-pad { padding: 1.25rem 1.5rem 6rem; }
-.section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ── SECTIONS ── */
+.section{display:none;}
+.section.active{display:block;}
+.sec-pad{padding:1.25rem 1.5rem 6rem;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ═══ RESUMEN SEMANA ANTERIOR ═══ */
+.week-summary{background:linear-gradient(135deg,rgba(232,255,71,0.06),rgba(71,200,255,0.04));border:1px solid rgba(232,255,71,0.18);border-radius:16px;padding:16px;margin-bottom:16px;position:relative;overflow:hidden;}
+.week-summary::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));}
+.ws-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.ws-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+.ws-week{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:1px;color:var(--muted);}
+.ws-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.ws-stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;}
+.ws-stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;line-height:1;color:var(--text);}
+.ws-stat-num.perfect{color:var(--accent);}
+.ws-stat-num.streak{color:var(--green);}
+.ws-stat-num.km{color:var(--accent2);}
+.ws-stat-label{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3;}
+.ws-days-row{display:flex;gap:5px;margin-bottom:10px;}
+.ws-day-dot{flex:1;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;}
+.ws-day-dot.full{background:rgba(232,255,71,0.15);color:var(--accent);border:1px solid rgba(232,255,71,0.3);}
+.ws-day-dot.partial{background:rgba(255,165,2,0.12);color:var(--orange);border:1px solid rgba(255,165,2,0.25);}
+.ws-day-dot.empty{background:rgba(255,255,255,0.03);color:var(--muted);border:1px solid var(--border);}
+.ws-day-dot.flex-day{background:rgba(46,213,115,0.08);color:var(--green);border:1px solid rgba(46,213,115,0.2);}
+.ws-dismiss{width:100%;padding:8px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.ws-dismiss:hover{border-color:rgba(255,255,255,0.2);color:var(--text);}
 
 /* ═══ DAY CARDS ═══ */
-.days-list { display: flex; flex-direction: column; gap: 8px; }
-.day-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color 0.2s; position: relative; }
-.day-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0; transition: opacity 0.2s; border-radius: 18px 18px 0 0; }
-.day-card.type-gym.open::before        { opacity:1; background: var(--accent); }
-.day-card.type-natacion.open::before   { opacity:1; background: var(--accent2); }
-.day-card.type-senderismo.open::before { opacity:1; background: var(--green); }
-.day-card.type-descanso.open::before   { opacity:1; background: var(--purple); }
-.day-card.type-flexible.open::before   { opacity:1; background: var(--orange); }
-.day-card.type-gym.open        { border-color: rgba(232,255,71,0.35); }
-.day-card.type-natacion.open   { border-color: rgba(71,200,255,0.35); }
-.day-card.type-senderismo.open { border-color: rgba(46,213,115,0.35); }
-.day-card.type-descanso.open   { border-color: rgba(167,139,250,0.35); }
-.day-card.type-flexible.open   { border-color: rgba(255,165,2,0.35); }
+.days-list{display:flex;flex-direction:column;gap:8px;}
+.day-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color 0.2s;position:relative;}
+.day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.2s;border-radius:18px 18px 0 0;}
+.day-card.type-gym.open::before        {opacity:1;background:var(--accent);}
+.day-card.type-natacion.open::before   {opacity:1;background:var(--accent2);}
+.day-card.type-senderismo.open::before {opacity:1;background:var(--green);}
+.day-card.type-descanso.open::before   {opacity:1;background:var(--purple);}
+.day-card.type-flexible.open::before   {opacity:1;background:var(--orange);}
+.day-card.type-gym.open        {border-color:rgba(232,255,71,0.35);}
+.day-card.type-natacion.open   {border-color:rgba(71,200,255,0.35);}
+.day-card.type-senderismo.open {border-color:rgba(46,213,115,0.35);}
+.day-card.type-descanso.open   {border-color:rgba(167,139,250,0.35);}
+.day-card.type-flexible.open   {border-color:rgba(255,165,2,0.35);}
 
-.dc-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; user-select: none; }
-.dc-head:hover { background: rgba(255,255,255,0.02); }
-.dc-day-col { flex: 1; }
-.dc-day-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.9rem; font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -0.5px; }
-.type-gym.open .dc-day-name        { color: var(--accent); }
-.type-natacion.open .dc-day-name   { color: var(--accent2); }
-.type-senderismo.open .dc-day-name { color: var(--green); }
-.type-descanso.open .dc-day-name   { color: var(--purple); }
-.type-flexible.open .dc-day-name   { color: var(--orange); }
-.dc-type-row { display: flex; align-items: center; gap: 5px; margin-top: 3px; }
-.dc-icon { font-size: 13px; }
-.dc-type-name { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-.today-pill { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 900; letter-spacing: 2px; color: #000; background: var(--accent); padding: 2px 7px; border-radius: 4px; margin-left: 6px; }
-.dc-prog-col { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 80px; }
-.dc-pct-num { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900; line-height: 1; color: var(--muted); }
-.day-card.open .dc-pct-num { color: var(--text); }
-.dc-bar-wrap { width: 80px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
-.dc-bar-fill { height: 100%; border-radius: 2px; background: var(--accent); transition: width 0.5s ease; }
-.type-natacion .dc-bar-fill   { background: var(--accent2); }
-.type-senderismo .dc-bar-fill { background: var(--green); }
-.type-descanso .dc-bar-fill   { background: var(--purple); }
-.type-flexible .dc-bar-fill   { background: var(--orange); }
-.dc-arr { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
-.day-card.open .dc-arr { transform: rotate(180deg); }
-.dc-body { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(.4,0,.2,1); }
-.day-card.open .dc-body { max-height: 3000px; }
-.dc-body-inner { border-top: 1px solid var(--border); padding: 14px 18px 18px; }
+.dc-head{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;user-select:none;}
+.dc-head:hover{background:rgba(255,255,255,0.02);}
+.dc-day-col{flex:1;}
+.dc-day-name{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;line-height:1;text-transform:uppercase;letter-spacing:-0.5px;}
+.type-gym.open .dc-day-name        {color:var(--accent);}
+.type-natacion.open .dc-day-name   {color:var(--accent2);}
+.type-senderismo.open .dc-day-name {color:var(--green);}
+.type-descanso.open .dc-day-name   {color:var(--purple);}
+.type-flexible.open .dc-day-name   {color:var(--orange);}
+.dc-type-row{display:flex;align-items:center;gap:5px;margin-top:3px;}
+.dc-icon{font-size:13px;}
+.dc-type-name{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.today-pill{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:900;letter-spacing:2px;color:#000;background:var(--accent);padding:2px 7px;border-radius:4px;margin-left:6px;}
+.dc-prog-col{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:80px;}
+.dc-pct-num{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;line-height:1;color:var(--muted);}
+.day-card.open .dc-pct-num{color:var(--text);}
+.dc-bar-wrap{width:80px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.dc-bar-fill{height:100%;border-radius:2px;background:var(--accent);transition:width 0.5s ease;}
+.type-natacion .dc-bar-fill   {background:var(--accent2);}
+.type-senderismo .dc-bar-fill {background:var(--green);}
+.type-descanso .dc-bar-fill   {background:var(--purple);}
+.type-flexible .dc-bar-fill   {background:var(--orange);}
+.dc-arr{color:var(--muted);transition:transform 0.3s;flex-shrink:0;}
+.day-card.open .dc-arr{transform:rotate(180deg);}
+.dc-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(.4,0,.2,1);}
+.day-card.open .dc-body{max-height:3000px;}
+.dc-body-inner{border-top:1px solid var(--border);padding:14px 18px 18px;}
 
-/* ═══ SELECTOR FLEXIBLE (Sáb/Dom) ═══ */
-.flex-selector { display: flex; gap: 8px; margin-bottom: 14px; }
-.flex-btn {
-  flex: 1; padding: 14px 10px; border-radius: 14px; border: 1.5px solid var(--border);
-  background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-}
-.flex-btn:hover { background: rgba(255,255,255,0.06); }
-.flex-btn.selected-senderismo { border-color: rgba(46,213,115,0.5); background: rgba(46,213,115,0.07); }
-.flex-btn.selected-descanso   { border-color: rgba(167,139,250,0.5); background: rgba(167,139,250,0.07); }
-.flex-btn-icon { font-size: 24px; }
-.flex-btn-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
-.flex-btn.selected-senderismo .flex-btn-label { color: var(--green); }
-.flex-btn.selected-descanso   .flex-btn-label { color: var(--purple); }
-.flex-reset { font-size: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; cursor: pointer; margin-bottom: 10px; display: none; }
-.flex-reset.visible { display: inline-block; }
-.flex-protocol { display: none; }
-.flex-protocol.visible { display: block; }
-.flex-pending { text-align: center; padding: 20px 0; color: var(--muted); font-size: 13px; }
-.flex-pending strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--orange); margin-bottom: 4px; }
+/* ═══ SELECTOR FLEXIBLE ═══ */
+.flex-selector{display:flex;gap:8px;margin-bottom:14px;}
+.flex-btn{flex:1;padding:14px 10px;border-radius:14px;border:1.5px solid var(--border);background:rgba(255,255,255,0.03);cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.flex-btn:hover{background:rgba(255,255,255,0.06);}
+.flex-btn.selected-senderismo{border-color:rgba(46,213,115,0.5);background:rgba(46,213,115,0.07);}
+.flex-btn.selected-descanso  {border-color:rgba(167,139,250,0.5);background:rgba(167,139,250,0.07);}
+.flex-btn-icon{font-size:24px;}
+.flex-btn-label{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.flex-btn.selected-senderismo .flex-btn-label{color:var(--green);}
+.flex-btn.selected-descanso   .flex-btn-label{color:var(--purple);}
+.flex-reset{font-size:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer;margin-bottom:10px;display:none;}
+.flex-reset.visible{display:inline-block;}
+.flex-protocol{display:none;}
+.flex-protocol.visible{display:block;}
+.flex-pending{text-align:center;padding:20px 0;color:var(--muted);font-size:13px;}
+.flex-pending strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;color:var(--orange);margin-bottom:4px;}
 
 /* ═══ TIME BLOCKS ═══ */
-.goal-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-.goal-chip { font-size: 11px; padding: 3px 9px; border-radius: 20px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); }
-.goal-chip.good { border-color: rgba(46,213,115,0.3); background: rgba(46,213,115,0.06); color: var(--green); }
-.goal-chip.bad  { border-color: rgba(255,71,87,0.3);  background: rgba(255,71,87,0.06);  color: var(--red); }
-.time-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
-.time-block-head { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; }
-.time-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-.badge-key { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(232,255,71,0.12); color: var(--accent); border: 1px solid rgba(232,255,71,0.25); }
-.badge-opt { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(255,165,2,0.10); color: var(--orange); border: 1px solid rgba(255,165,2,0.20); }
-.badge-exc { font-size: 9px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; padding: 2px 7px; border-radius: 4px; background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.25); }
-.supp-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border); cursor: pointer; transition: background 0.15s; user-select: none; }
-.supp-item:hover { background: rgba(255,255,255,0.02); }
-.supp-emoji { font-size: 17px; width: 24px; text-align: center; flex-shrink: 0; }
-.supp-info { flex: 1; }
-.supp-name { font-size: 13px; font-weight: 500; transition: color 0.2s; }
-.supp-dose { font-size: 11px; color: var(--muted); margin-top: 1px; }
-.supp-detail { font-size: 10px; color: rgba(107,114,128,0.7); margin-top: 2px; font-style: italic; }
-.supp-chk { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.supp-item.done .supp-chk { background: var(--accent); border-color: var(--accent); }
-.supp-item.done .supp-name { color: var(--muted); text-decoration: line-through; }
-.chk-svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.15s; }
-.supp-item.done .chk-svg { opacity: 1; }
-.food-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--border); background: rgba(46,213,115,0.03); }
-.food-item .supp-name { color: var(--green); }
-.food-item .supp-dose { color: rgba(46,213,115,0.6); }
-.block-note { font-size: 11px; color: var(--muted); padding: 7px 14px 9px; line-height: 1.5; border-top: 1px solid var(--border); }
-.no-use-block { background: rgba(255,71,87,0.04); border: 1px solid rgba(255,71,87,0.12); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
-.no-use-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
-.no-use-item { font-size: 12px; color: var(--muted); padding: 3px 0; }
-.truth-box { background: rgba(232,255,71,0.04); border: 1px solid rgba(232,255,71,0.12); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
-.truth-box-title { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-.truth-item { display: flex; gap: 9px; padding: 5px 0; font-size: 12px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.truth-item:last-child { border-bottom: none; }
-.truth-bullet { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
-.truth-text { flex: 1; line-height: 1.5; color: var(--muted); }
-.truth-text strong { color: var(--text); font-weight: 600; }
+.goal-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.goal-chip{font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--muted);}
+.goal-chip.good{border-color:rgba(46,213,115,0.3);background:rgba(46,213,115,0.06);color:var(--green);}
+.goal-chip.bad {border-color:rgba(255,71,87,0.3); background:rgba(255,71,87,0.06); color:var(--red);}
+.time-block{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+.time-block-head{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;}
+.time-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.badge-key{font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;background:rgba(232,255,71,0.12);color:var(--accent);border:1px solid rgba(232,255,71,0.25);}
+.badge-opt{font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;background:rgba(255,165,2,0.10);color:var(--orange);border:1px solid rgba(255,165,2,0.20);}
+.badge-exc{font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:4px;background:rgba(167,139,250,0.12);color:var(--purple);border:1px solid rgba(167,139,250,0.25);}
+.supp-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--border);cursor:pointer;transition:background 0.15s;user-select:none;}
+.supp-item:hover{background:rgba(255,255,255,0.02);}
+.supp-emoji{font-size:17px;width:24px;text-align:center;flex-shrink:0;}
+.supp-info{flex:1;}
+.supp-name{font-size:13px;font-weight:500;transition:color 0.2s;}
+.supp-dose{font-size:11px;color:var(--muted);margin-top:1px;}
+.supp-detail{font-size:10px;color:rgba(107,114,128,0.7);margin-top:2px;font-style:italic;}
+.supp-chk{width:20px;height:20px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.supp-item.done .supp-chk{background:var(--accent);border-color:var(--accent);}
+.supp-item.done .supp-name{color:var(--muted);text-decoration:line-through;}
+.chk-svg{width:11px;height:11px;opacity:0;transition:opacity 0.15s;}
+.supp-item.done .chk-svg{opacity:1;}
+.food-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--border);background:rgba(46,213,115,0.03);}
+.food-item .supp-name{color:var(--green);}
+.food-item .supp-dose{color:rgba(46,213,115,0.6);}
+.block-note{font-size:11px;color:var(--muted);padding:7px 14px 9px;line-height:1.5;border-top:1px solid var(--border);}
+.no-use-block{background:rgba(255,71,87,0.04);border:1px solid rgba(255,71,87,0.12);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+.no-use-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.no-use-item{font-size:12px;color:var(--muted);padding:3px 0;}
+.truth-box{background:rgba(232,255,71,0.04);border:1px solid rgba(232,255,71,0.12);border-radius:12px;padding:12px 14px;margin-bottom:8px;}
+.truth-box-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.truth-item{display:flex;gap:9px;padding:5px 0;font-size:12px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,0.04);}
+.truth-item:last-child{border-bottom:none;}
+.truth-bullet{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;}
+.truth-text{flex:1;line-height:1.5;color:var(--muted);}
+.truth-text strong{color:var(--text);font-weight:600;}
 
 /* ═══ PRINCIPIOS ACCORDION ═══ */
-.accord { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; overflow: hidden; }
-.accord-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; cursor: pointer; gap: 12px; }
-.accord-head:hover { background: rgba(255,255,255,0.02); }
-.accord-icon { font-size: 18px; flex-shrink: 0; }
-.accord-title { flex: 1; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-.accord-arr { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
-.accord.open .accord-arr { transform: rotate(180deg); }
-.accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.accord.open .accord-body { max-height: 1200px; }
-.accord-inner { border-top: 1px solid var(--border); padding: 14px 16px; }
-.supp-pill-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-.supp-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); font-size: 12px; }
-.pill-emoji { font-size: 14px; }
-.pill-name { font-weight: 500; }
-.pill-fn { color: var(--muted); font-size: 11px; }
-.pill-dose { color: var(--accent2); font-size: 10px; margin-left: 2px; }
-.adjust-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
-.adjust-item:last-child { border-bottom: none; padding-bottom: 0; }
-.adj-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.adj-text { flex: 1; color: var(--muted); }
-.adj-text strong { color: var(--text); font-weight: 600; }
-.dosis-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
-.dosis-table th { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
-.dosis-table td { padding: 8px 8px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--muted); vertical-align: top; }
-.dosis-table td:first-child { color: var(--text); font-weight: 500; }
-.dosis-table td strong { color: var(--accent); }
-.dosis-table tr:last-child td { border-bottom: none; }
+.accord{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:8px;overflow:hidden;}
+.accord-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer;gap:12px;}
+.accord-head:hover{background:rgba(255,255,255,0.02);}
+.accord-icon{font-size:18px;flex-shrink:0;}
+.accord-title{flex:1;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.accord-arr{color:var(--muted);transition:transform 0.3s;flex-shrink:0;}
+.accord.open .accord-arr{transform:rotate(180deg);}
+.accord-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.accord.open .accord-body{max-height:1200px;}
+.accord-inner{border-top:1px solid var(--border);padding:14px 16px;}
+.supp-pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.supp-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:12px;}
+.pill-emoji{font-size:14px;}
+.pill-name{font-weight:500;}
+.pill-fn{color:var(--muted);font-size:11px;}
+.pill-dose{color:var(--accent2);font-size:10px;margin-left:2px;}
+.adjust-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5;}
+.adjust-item:last-child{border-bottom:none;padding-bottom:0;}
+.adj-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.adj-text{flex:1;color:var(--muted);}
+.adj-text strong{color:var(--text);font-weight:600;}
+.dosis-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px;}
+.dosis-table th{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);}
+.dosis-table td{padding:8px 8px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--muted);vertical-align:top;}
+.dosis-table td:first-child{color:var(--text);font-weight:500;}
+.dosis-table td strong{color:var(--accent);}
+.dosis-table tr:last-child td{border-bottom:none;}
 
 /* ═══ GYM ═══ */
-.check-group-label { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.check-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.exercise-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 8px; overflow: hidden; }
-.exercise-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; transition: background 0.2s; }
-.exercise-header:hover { background: rgba(255,255,255,0.03); }
-.ex-check { width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.exercise-card.done .ex-check { background: var(--accent); border-color: var(--accent); }
-.check-icon { width: 12px; height: 12px; opacity: 0; transition: opacity 0.15s; }
-.exercise-card.done .check-icon { opacity: 1; }
-.ex-info { flex: 1; }
-.ex-name { font-size: 14px; font-weight: 500; }
-.ex-meta { display: flex; gap: 8px; margin-top: 3px; flex-wrap: wrap; }
-.ex-sets { font-size: 12px; color: var(--muted); }
-.ex-level { font-size: 11px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 1px; }
-.ex-source { font-size: 11px; color: rgba(107,114,128,0.5); }
-.exercise-card.done .ex-name { color: var(--muted); text-decoration: line-through; }
-.ex-expand { color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
-.exercise-card.open .ex-expand { transform: rotate(180deg); }
-.ex-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-.exercise-card.open .ex-body { max-height: 500px; }
-.ex-inner { border-top: 1px solid var(--border); padding: 14px 16px; }
-.ex-video-outer { display: flex; justify-content: center; margin-bottom: 12px; }
-.ex-video-wrap { width: 60%; border-radius: 10px; overflow: hidden; background: #000; }
-.ex-video-aspect { position: relative; padding-bottom: 56.25%; }
-.ex-video-aspect iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-.ex-video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: var(--bg3); cursor: pointer; border-radius: 10px; }
-.play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
-.play-btn:hover { transform: scale(1.08); }
-.play-btn svg { margin-left: 2px; }
-.ex-tip { font-size: 12px; color: var(--muted); line-height: 1.5; background: rgba(232,255,71,0.05); border-left: 2px solid var(--accent); padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 10px; }
-.ex-timer-row { display: flex; gap: 6px; }
-.timer-pill { flex: 1; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--accent); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; text-align: center; }
-.timer-pill:hover { background: var(--accent); color: #000; }
+.check-group-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.check-group-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.exercise-card{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:8px;overflow:hidden;}
+.exercise-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;transition:background 0.2s;}
+.exercise-header:hover{background:rgba(255,255,255,0.03);}
+.ex-check{width:22px;height:22px;border-radius:6px;border:1.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.exercise-card.done .ex-check{background:var(--accent);border-color:var(--accent);}
+.check-icon{width:12px;height:12px;opacity:0;transition:opacity 0.15s;}
+.exercise-card.done .check-icon{opacity:1;}
+.ex-info{flex:1;}
+.ex-name{font-size:14px;font-weight:500;}
+.ex-meta{display:flex;gap:8px;margin-top:3px;flex-wrap:wrap;}
+.ex-sets{font-size:12px;color:var(--muted);}
+.ex-level{font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;}
+.ex-source{font-size:11px;color:rgba(107,114,128,0.5);}
+.exercise-card.done .ex-name{color:var(--muted);text-decoration:line-through;}
+.ex-expand{color:var(--muted);transition:transform 0.3s;flex-shrink:0;}
+.exercise-card.open .ex-expand{transform:rotate(180deg);}
+.ex-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.exercise-card.open .ex-body{max-height:500px;}
+.ex-inner{border-top:1px solid var(--border);padding:14px 16px;}
+.ex-video-outer{display:flex;justify-content:center;margin-bottom:12px;}
+.ex-video-wrap{width:60%;border-radius:10px;overflow:hidden;background:#000;}
+.ex-video-aspect{position:relative;padding-bottom:56.25%;}
+.ex-video-aspect iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.ex-video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--bg3);cursor:pointer;border-radius:10px;}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;transition:transform 0.2s;}
+.play-btn:hover{transform:scale(1.08);}
+.play-btn svg{margin-left:2px;}
+.ex-tip{font-size:12px;color:var(--muted);line-height:1.5;background:rgba(232,255,71,0.05);border-left:2px solid var(--accent);padding:8px 10px;border-radius:0 6px 6px 0;margin-bottom:10px;}
+.ex-timer-row{display:flex;gap:6px;}
+.timer-pill{flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--accent);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.timer-pill:hover{background:var(--accent);color:#000;}
 
 /* TIMER OVERLAY */
-.timer-overlay { position: fixed; bottom: 80px; right: 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; display: none; align-items: center; gap: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); z-index: 100; }
-.timer-overlay.active { display: flex; }
-.timer-display { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--accent); line-height: 1; }
-.timer-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-.timer-stop { background: rgba(255,71,87,0.15); border: 1px solid rgba(255,71,87,0.3); border-radius: 8px; padding: 8px 12px; color: var(--red); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer; letter-spacing: 1px; }
+.timer-overlay{position:fixed;bottom:80px;right:16px;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:none;align-items:center;gap:16px;box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:100;}
+.timer-overlay.active{display:flex;}
+.timer-display{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:var(--accent);line-height:1;}
+.timer-label{font-size:12px;color:var(--muted);margin-top:4px;}
+.timer-stop{background:rgba(255,71,87,0.15);border:1px solid rgba(255,71,87,0.3);border-radius:8px;padding:8px 12px;color:var(--red);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:1px;}
 </style>
 </head>
 <body>
@@ -229,8 +250,13 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
   </button>
 </div>
 
+<!-- ═══════════ SUPLEMENTACIÓN ═══════════ -->
 <div id="tracking" class="section active">
   <div class="sec-pad">
+
+    <!-- Resumen semana anterior (se inyecta si existe) -->
+    <div id="weekSummaryWrap"></div>
+
     <div class="section-label">Semana actual</div>
     <div class="days-list" id="daysList"></div>
 
@@ -291,8 +317,8 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
       </div>
       <div class="accord-body"><div class="accord-inner">
         <div class="adjust-item"><span class="adj-icon">🟠</span><div class="adj-text"><strong>Cúrcuma + Vit C →</strong> 2 al día (mañana + noche)</div></div>
-        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja citrulina</strong> a 3 caps — suficiente para flujo sin sobrecargar</div></div>
-        <div class="adjust-item"><span class="adj-icon">🧠</span><div class="adj-text"><strong>Mantén movimiento</strong> — clave para recuperación del tendón. No pares.</div></div>
+        <div class="adjust-item"><span class="adj-icon">⚡</span><div class="adj-text"><strong>Baja citrulina</strong> a 3 caps — suficiente sin sobrecargar</div></div>
+        <div class="adjust-item"><span class="adj-icon">🧠</span><div class="adj-text"><strong>Mantén movimiento</strong> — clave para recuperación del tendón.</div></div>
         <div class="adjust-item"><span class="adj-icon">❌</span><div class="adj-text">Evita press overhead pesado. Prioriza <strong>excéntricos y rehab</strong>.</div></div>
       </div></div>
     </div>
@@ -308,7 +334,7 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
         <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>POST:</strong> Creatina 5 g + Omega 3 2–3 caps + Hialoflex 1 cap</div></div>
         <div class="truth-item"><div class="truth-bullet"></div><div class="truth-text"><strong>Natación extra:</strong> 🍌 plátano a las 6:00 am junto al colágeno</div></div>
         <div style="margin-top:10px;padding:10px 12px;background:rgba(232,255,71,0.05);border:1px solid rgba(232,255,71,0.12);border-radius:10px;font-size:12px;color:var(--muted);line-height:1.8;">
-          ✔ Sin arginina &nbsp;·&nbsp; ✔ Omega 3 verificado 500 mg/cap &nbsp;·&nbsp; ✔ Sáb/Dom flexible &nbsp;·&nbsp; ✔ Sin sobrecargar
+          ✔ Sin arginina &nbsp;·&nbsp; ✔ Omega 3 verificado 500 mg/cap &nbsp;·&nbsp; ✔ Sáb/Dom flexible &nbsp;·&nbsp; ✔ Auto-limpieza semanal
         </div>
       </div></div>
     </div>
@@ -330,26 +356,73 @@ body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--te
 </div>
 
 <script>
-const DAYS = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+// ═══════════════════════════════════════════
+// CONSTANTES
+// ═══════════════════════════════════════════
+const DAYS      = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
 const DAY_SHORT = ["DOM","LUN","MAR","MIÉ","JUE","VIE","SÁB"];
-const DISPLAY_ORDER = [1,2,3,4,5,6,0];
-const today = DAYS[new Date().getDay()];
+const DISPLAY_ORDER = [1,2,3,4,5,6,0]; // Lun → Dom
 
-document.getElementById('dayName').textContent = today.toUpperCase();
-document.getElementById('dateBadge').textContent = new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long'}).toUpperCase();
+const now    = new Date();
+const today  = DAYS[now.getDay()];
 
-// Lun/Vie=gym, Mar/Mié/Jue=natacion, Sáb/Dom=flexible
+document.getElementById('dayName').textContent  = today.toUpperCase();
+document.getElementById('dateBadge').textContent = now.toLocaleDateString('es-MX',{day:'numeric',month:'long'}).toUpperCase();
+
+// ─── Número de semana ISO ───
+function getISOWeek(d) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return { week: Math.ceil((((date - yearStart) / 86400000) + 1) / 7), year: date.getUTCFullYear() };
+}
+const { week: CURRENT_WEEK, year: CURRENT_YEAR } = getISOWeek(now);
+const WEEK_KEY = `${CURRENT_YEAR}_w${CURRENT_WEEK}`;
+const PREV_WEEK_KEY = (() => {
+  const d = new Date(now); d.setDate(d.getDate() - 7);
+  const { week, year } = getISOWeek(d);
+  return `${year}_w${week}`;
+})();
+
 const DAY_TYPES = {
   'Lunes':'gym','Martes':'natacion','Miércoles':'natacion',
   'Jueves':'natacion','Viernes':'gym','Sábado':'flexible','Domingo':'flexible'
 };
 
-// ─── Guardar/leer selección flexible ───
-const getFlexChoice = d => localStorage.getItem('flex_'+d) || null; // 'senderismo' | 'descanso' | null
-const setFlexChoice = (d,v) => localStorage.setItem('flex_'+d, v);
-const clearFlexChoice = d => localStorage.removeItem('flex_'+d);
+// ═══════════════════════════════════════════
+// STORAGE — todas las claves incluyen WEEK_KEY
+// ═══════════════════════════════════════════
+const suppKey  = (week, day) => `supp_${week}_${day}`;
+const flexKey  = (week, day) => `flex_${week}_${day}`;
+const gymKey   = (week, day) => `gym_${week}_${day}`;
+const summaryDismissKey = w => `summary_dismissed_${w}`;
 
-// ─── PROTOCOLS ───
+const getSuppState  = d => { try { return JSON.parse(localStorage.getItem(suppKey(WEEK_KEY,d))||'{}'); } catch(e){ return {}; } };
+const setSuppState  = (d,s) => { try { localStorage.setItem(suppKey(WEEK_KEY,d), JSON.stringify(s)); } catch(e){} };
+const getFlexChoice = d => localStorage.getItem(flexKey(WEEK_KEY,d)) || null;
+const setFlexChoice = (d,v) => localStorage.setItem(flexKey(WEEK_KEY,d), v);
+const clearFlexChoice = d => localStorage.removeItem(flexKey(WEEK_KEY,d));
+
+// ─── Limpiar semanas viejas (más de 3 semanas atrás) ───
+function pruneOldWeeks() {
+  const keysToDelete = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (!k) continue;
+    // Patrón: supp_YYYY_wWW_*, flex_YYYY_wWW_*, gym_YYYY_wWW_*
+    const m = k.match(/^(?:supp|flex|gym|summary_dismissed)_(\d{4})_w(\d+)/);
+    if (m) {
+      const kYear = parseInt(m[1]), kWeek = parseInt(m[2]);
+      const weeksDiff = (CURRENT_YEAR - kYear) * 52 + (CURRENT_WEEK - kWeek);
+      if (weeksDiff > 3) keysToDelete.push(k);
+    }
+  }
+  keysToDelete.forEach(k => localStorage.removeItem(k));
+}
+
+// ═══════════════════════════════════════════
+// PROTOCOLS
+// ═══════════════════════════════════════════
 const PROTOCOLS = {
   natacion: {
     label:'Natación', icon:'🏊',
@@ -357,9 +430,9 @@ const PROTOCOLS = {
       { tag:'pre1', time:'6:00 am — PRE tendón', key:true,
         note:'Colágeno + Vit C 30–60 min antes. El plátano da glucosa sin peso en el estómago.',
         items:[
-          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · activar con Vit C', emoji:'💪' },
-          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
-          { id:'pla', name:'Plátano', dose:'1 pieza', detail:'Potasio + glucosa · fácil digestión', emoji:'🍌', food:true },
+          { id:'col', name:'Colágeno hidrolizado',   dose:'12–15 g en agua',              detail:'Péptidos de res · activar con Vit C',   emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C',   dose:'1 cápsula',                    detail:'Activa síntesis de colágeno',            emoji:'🟠' },
+          { id:'pla', name:'Plátano',                dose:'1 pieza',                      detail:'Potasio + glucosa · fácil digestión',    emoji:'🍌', food:true },
         ]},
       { tag:'pre2', time:'6:30 am — PRE rendimiento',
         note:'20–30 min antes del agua. La citrulina reemplaza arginina con mejor biodisponibilidad.',
@@ -369,9 +442,9 @@ const PROTOCOLS = {
       { tag:'post', time:'POST — Desayuno',
         note:'Omega 3 con la comida más grasa para mejor absorción.',
         items:[
-          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Micronizada · recuperación muscular', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA por cápsula', emoji:'🐟' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II 40 mg + Hialurónico 80 mg', emoji:'🦴' },
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)',                detail:'Micronizada · recuperación muscular',    emoji:'⚙️' },
+          { id:'ome', name:'Omega 3',                dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA por cápsula',          emoji:'🐟' },
+          { id:'hia', name:'Hialoflex',              dose:'1 cápsula',                    detail:'Colágeno tipo II 40 mg + Hialurónico 80 mg', emoji:'🦴' },
         ]},
       { tag:'opt', time:'Opcional', optional:true,
         items:[
@@ -385,16 +458,16 @@ const PROTOCOLS = {
       { tag:'pre', time:'30–60 min antes — PRE', key:true,
         note:'Colágeno primero. Citrulina 20–30 min antes del entreno.',
         items:[
-          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Péptidos de res · repara tendón', emoji:'💪' },
-          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis de colágeno', emoji:'🟠' },
-          { id:'cit', name:'Citrulina', dose:'4–5 cápsulas (≈ 5–6 g)', detail:'1,200 mg/cap · reemplaza arginina', emoji:'⚡' },
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua',              detail:'Péptidos de res · repara tendón',        emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula',                    detail:'Activa síntesis de colágeno',            emoji:'🟠' },
+          { id:'cit', name:'Citrulina',            dose:'4–5 cápsulas (≈ 5–6 g)',       detail:'1,200 mg/cap · reemplaza arginina',      emoji:'⚡' },
         ]},
       { tag:'post', time:'POST',
         note:'Omega 3 con la comida más grasa del día.',
         items:[
-          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Siempre diario, incluso en descanso', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · antiinflamatorio base', emoji:'🐟' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Colágeno tipo II + Hialurónico · soporte articular', emoji:'🦴' },
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)',                detail:'Siempre diario, incluso en descanso',   emoji:'⚙️' },
+          { id:'ome', name:'Omega 3',                dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'500 mg EPA+DHA/cap · antiinflamatorio', emoji:'🐟' },
+          { id:'hia', name:'Hialoflex',              dose:'1 cápsula',                    detail:'Colágeno tipo II + Hialurónico',        emoji:'🦴' },
         ]},
     ]
   },
@@ -404,9 +477,9 @@ const PROTOCOLS = {
       { tag:'pre', time:'Antes de salir', key:true,
         note:'Colágeno con Vit C 30–60 min antes. Omega 3 con algo de grasa.',
         items:[
-          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua', detail:'Tendones y articulaciones', emoji:'💪' },
-          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio + síntesis colágeno', emoji:'🟠' },
-          { id:'ome', name:'Omega 3', dose:'1–2 cápsulas', detail:'500 mg EPA+DHA/cap · soporte articular en caminata', emoji:'🐟' },
+          { id:'col', name:'Colágeno hidrolizado', dose:'12–15 g en agua',  detail:'Tendones y articulaciones',                    emoji:'💪' },
+          { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula',        detail:'Antiinflamatorio + síntesis colágeno',         emoji:'🟠' },
+          { id:'ome', name:'Omega 3',              dose:'1–2 cápsulas',     detail:'500 mg EPA+DHA/cap · soporte articular',       emoji:'🐟' },
         ]},
       { tag:'opt', time:'Opcional — si la ruta es larga', optional:true,
         note:'Solo si la ruta es exigente.',
@@ -416,7 +489,7 @@ const PROTOCOLS = {
       { tag:'post', time:'Después',
         items:[
           { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Recuperación · diario sin excepción', emoji:'⚙️' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Post-caminata larga · recuperación articular', emoji:'🦴' },
+          { id:'hia', name:'Hialoflex',              dose:'1 cápsula',     detail:'Post-caminata · recuperación articular', emoji:'🦴' },
         ]},
     ]
   },
@@ -426,9 +499,9 @@ const PROTOCOLS = {
       { tag:'manana', time:'🌅 Mañana — con desayuno', key:true,
         note:'Todo con comida. El progreso también pasa cuando recuperas bien.',
         items:[
-          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)', detail:'Siempre · mantiene saturación muscular', emoji:'⚙️' },
-          { id:'ome', name:'Omega 3', dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'Desinflamación en reposo', emoji:'🐟' },
-          { id:'hia', name:'Hialoflex', dose:'1 cápsula', detail:'Soporte articular diario', emoji:'🦴' },
+          { id:'cre', name:'Creatina monohidratada', dose:'1 scoop (5 g)',                detail:'Siempre · mantiene saturación muscular', emoji:'⚙️' },
+          { id:'ome', name:'Omega 3',                dose:'2–3 cápsulas (1–1.5 g EPA+DHA)', detail:'Desinflamación en reposo',            emoji:'🐟' },
+          { id:'hia', name:'Hialoflex',              dose:'1 cápsula',                    detail:'Soporte articular diario',             emoji:'🦴' },
         ]},
       { tag:'noche', time:'🌇 Tarde / Noche', optional:true,
         note:'Solo si hay dolor, inflamación, o vienes de días cargados.',
@@ -436,30 +509,34 @@ const PROTOCOLS = {
           { id:'cur', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Antiinflamatorio de recuperación', emoji:'🟠' },
         ]},
       { tag:'rehab', time:'⚠️ Si haces rehab de hombro', exc:true,
-        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo mecánico.',
+        note:'30–45 min antes. Aquí SÍ aplica porque hay estímulo mecánico en el tendón.',
         items:[
-          { id:'col', name:'Colágeno hidrolizado', dose:'10–12 g en agua', detail:'Dosis menor · suficiente para rehab', emoji:'💪' },
-          { id:'cur2', name:'Cúrcuma + Vitamina C', dose:'1 cápsula', detail:'Activa síntesis', emoji:'🟠' },
+          { id:'col',  name:'Colágeno hidrolizado', dose:'10–12 g en agua', detail:'Dosis menor · suficiente para rehab', emoji:'💪' },
+          { id:'cur2', name:'Cúrcuma + Vitamina C', dose:'1 cápsula',       detail:'Activa síntesis',                    emoji:'🟠' },
         ]},
     ]
   }
 };
 
-// ─── Storage ───
-const getSuppState = d => { try { return JSON.parse(localStorage.getItem('supp_'+d)||'{}'); } catch(e) { return {}; } };
-const setSuppState = (d,s) => { try { localStorage.setItem('supp_'+d, JSON.stringify(s)); } catch(e) {} };
-
+// ═══════════════════════════════════════════
+// PROGRESO
+// ═══════════════════════════════════════════
 function getEffectiveType(dayName) {
   const base = DAY_TYPES[dayName];
   if (base === 'flexible') return getFlexChoice(dayName) || 'flexible';
   return base;
 }
 
-function getDayProgress(dayName) {
-  const type = getEffectiveType(dayName);
+function getDayProgress(dayName, weekKey) {
+  const wk = weekKey || WEEK_KEY;
+  const type = weekKey
+    ? (localStorage.getItem(flexKey(wk, dayName)) || DAY_TYPES[dayName])
+    : getEffectiveType(dayName);
   if (type === 'flexible') return { total:0, done:0, pct:0 };
   const proto = PROTOCOLS[type];
-  const state = getSuppState(dayName);
+  if (!proto) return { total:0, done:0, pct:0 };
+  let state = {};
+  try { state = JSON.parse(localStorage.getItem(suppKey(wk, dayName))||'{}'); } catch(e){}
   let total=0, done=0;
   proto.blocks.forEach(b => {
     if (!b.optional && !b.exc) b.items.forEach(item => {
@@ -471,7 +548,109 @@ function getDayProgress(dayName) {
   return { total, done, pct: total>0 ? Math.round(done/total*100) : 0 };
 }
 
-// ─── Build protocol HTML ───
+// ═══════════════════════════════════════════
+// RESUMEN SEMANA ANTERIOR
+// ═══════════════════════════════════════════
+function buildWeekSummary() {
+  const wrap = document.getElementById('weekSummaryWrap');
+  // Ya fue descartado
+  if (localStorage.getItem(summaryDismissKey(PREV_WEEK_KEY)) === '1') return;
+
+  // Verificar si hay datos de la semana anterior
+  let hasData = false;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('supp_'+PREV_WEEK_KEY)) { hasData = true; break; }
+  }
+  if (!hasData) return;
+
+  // Calcular stats
+  let perfectDays = 0, totalCreatine = 0, senderismoDays = 0;
+  const dayDots = [];
+
+  DISPLAY_ORDER.forEach(dayIdx => {
+    const dayName = DAYS[dayIdx];
+    const { done, total, pct } = getDayProgress(dayName, PREV_WEEK_KEY);
+    const flexType = localStorage.getItem(flexKey(PREV_WEEK_KEY, dayName));
+    const baseType = DAY_TYPES[dayName];
+
+    // Creatina streak — buscar en state
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(suppKey(PREV_WEEK_KEY, dayName))||'{}'); } catch(e){}
+    const hasCreatine = Object.keys(state).some(k => k.includes('_cre') && state[k]);
+    if (hasCreatine) totalCreatine++;
+
+    if (baseType === 'flexible' && flexType === 'senderismo') senderismoDays++;
+    if (total > 0 && pct === 100) perfectDays++;
+
+    // Dot
+    let dotClass = 'empty', dotLabel = DAY_SHORT[dayIdx];
+    if (total === 0) dotClass = 'empty';
+    else if (pct === 100) dotClass = 'full';
+    else if (pct > 0)     dotClass = 'partial';
+    if (baseType === 'flexible' && (flexType === 'senderismo')) dotClass += ' flex-day';
+
+    dayDots.push({ label: dotLabel, cls: dotClass, pct });
+  });
+
+  const dotsHtml = dayDots.map(d =>
+    `<div class="ws-day-dot ${d.cls}" title="${d.pct}%">${d.label}</div>`
+  ).join('');
+
+  // Número de semana legible
+  const prevDate = new Date(now); prevDate.setDate(prevDate.getDate() - 7);
+  const weekLabel = prevDate.toLocaleDateString('es-MX',{month:'short',day:'numeric'});
+
+  wrap.innerHTML = `
+    <div class="week-summary" id="weekSummaryCard">
+      <div class="ws-header">
+        <span class="ws-title">📊 Semana anterior</span>
+        <span class="ws-week">semana ${PREV_WEEK_KEY.split('_w')[1]} · desde ${weekLabel}</span>
+      </div>
+      <div class="ws-stats">
+        <div class="ws-stat">
+          <div class="ws-stat-num perfect">${perfectDays}</div>
+          <div class="ws-stat-label">días 100% completados</div>
+        </div>
+        <div class="ws-stat">
+          <div class="ws-stat-num streak">${totalCreatine}/7</div>
+          <div class="ws-stat-label">streak creatina</div>
+        </div>
+        <div class="ws-stat">
+          <div class="ws-stat-num km">${senderismoDays}</div>
+          <div class="ws-stat-label">días senderismo</div>
+        </div>
+      </div>
+      <div class="ws-days-row">${dotsHtml}</div>
+      <button class="ws-dismiss" onclick="dismissSummary()">Entendido · limpiar semana anterior</button>
+    </div>`;
+}
+
+function dismissSummary() {
+  localStorage.setItem(summaryDismissKey(PREV_WEEK_KEY), '1');
+  // Limpiar datos de la semana anterior del localStorage
+  const keysToDelete = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && (k.includes('_'+PREV_WEEK_KEY+'_') || k.startsWith('supp_'+PREV_WEEK_KEY) || k.startsWith('flex_'+PREV_WEEK_KEY) || k.startsWith('gym_'+PREV_WEEK_KEY))) {
+      keysToDelete.push(k);
+    }
+  }
+  keysToDelete.forEach(k => localStorage.removeItem(k));
+  const card = document.getElementById('weekSummaryCard');
+  if (card) {
+    card.style.transition = 'opacity 0.3s, max-height 0.4s';
+    card.style.opacity = '0';
+    card.style.overflow = 'hidden';
+    card.style.maxHeight = card.offsetHeight + 'px';
+    setTimeout(() => { card.style.maxHeight = '0'; card.style.padding = '0'; }, 50);
+    setTimeout(() => { card.parentElement.innerHTML = ''; }, 450);
+  }
+}
+
+// ═══════════════════════════════════════════
+// BUILD PROTOCOL HTML
+// ═══════════════════════════════════════════
 function buildProtocolHtml(dayName, type) {
   const proto = PROTOCOLS[type];
   const state = getSuppState(dayName);
@@ -487,9 +666,9 @@ function buildProtocolHtml(dayName, type) {
   }
 
   proto.blocks.forEach(block => {
-    const badge = block.key ? '<span class="badge-key">CLAVE</span>'
+    const badge = block.key      ? '<span class="badge-key">CLAVE</span>'
                 : block.optional ? '<span class="badge-opt">OPCIONAL</span>'
-                : block.exc ? '<span class="badge-exc">EXCEPCIÓN</span>' : '';
+                : block.exc      ? '<span class="badge-exc">EXCEPCIÓN</span>' : '';
     html += `<div class="time-block"><div class="time-block-head"><span class="time-lbl">${block.time}</span>${badge}</div>`;
     block.items.forEach(item => {
       if (item.food) {
@@ -503,7 +682,7 @@ function buildProtocolHtml(dayName, type) {
           <span style="font-size:10px;color:var(--green);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:1px;">ALIMENTO</span>
         </div>`;
       } else {
-        const key = block.tag+'_'+item.id;
+        const key  = block.tag+'_'+item.id;
         const isDone = state[key] ? ' done' : '';
         html += `<div class="supp-item${isDone}" id="si_${dayName}_${key}" onclick="toggleSupp('${dayName}','${key}')">
           <span class="supp-emoji">${item.emoji}</span>
@@ -537,7 +716,7 @@ function buildProtocolHtml(dayName, type) {
   return html;
 }
 
-// ─── Build flexible selector HTML ───
+// ─── Flexible selector HTML ───
 function buildFlexibleHtml(dayName) {
   const choice = getFlexChoice(dayName);
   const selSend = choice === 'senderismo' ? 'selected-senderismo' : '';
@@ -556,10 +735,9 @@ function buildFlexibleHtml(dayName) {
 
   if (choice) {
     html += `<button class="flex-reset visible" onclick="resetFlexType('${dayName}')">↺ Cambiar selección</button>`;
-    html += `<div class="flex-protocol visible" id="fp_${dayName}">${buildProtocolHtml(dayName, choice)}</div>`;
+    html += `<div class="flex-protocol visible">${buildProtocolHtml(dayName, choice)}</div>`;
   } else {
-    html += `<button class="flex-reset" id="freset_${dayName}" onclick="resetFlexType('${dayName}')">↺ Cambiar selección</button>`;
-    html += `<div class="flex-protocol" id="fp_${dayName}">
+    html += `<div class="flex-protocol visible">
       <div class="flex-pending"><strong>¿Qué haces hoy?</strong>Elige arriba para cargar tu protocolo</div>
     </div>`;
   }
@@ -569,16 +747,11 @@ function buildFlexibleHtml(dayName) {
 // ─── Flex actions ───
 function chooseFlexType(dayName, type) {
   setFlexChoice(dayName, type);
-  // Actualizar tipo visual de la card
   const card = document.getElementById('dc_'+dayName);
   card.className = `day-card type-${type} open`;
-  // Reconstruir interior
-  const inner = card.querySelector('.dc-body-inner');
-  inner.innerHTML = buildFlexibleHtml(dayName);
-  // Actualizar icono y label en header
-  const proto = PROTOCOLS[type];
-  card.querySelector('.dc-icon').textContent = proto.icon;
-  card.querySelector('.dc-type-name').textContent = proto.label;
+  card.querySelector('.dc-body-inner').innerHTML = buildFlexibleHtml(dayName);
+  card.querySelector('.dc-icon').textContent = PROTOCOLS[type].icon;
+  card.querySelector('.dc-type-name').textContent = PROTOCOLS[type].label;
   updateCardProgress(dayName);
 }
 
@@ -588,48 +761,46 @@ function resetFlexType(dayName) {
   card.className = `day-card type-flexible open`;
   card.querySelector('.dc-icon').textContent = '🔀';
   card.querySelector('.dc-type-name').textContent = 'Elige tipo';
-  const inner = card.querySelector('.dc-body-inner');
-  inner.innerHTML = buildFlexibleHtml(dayName);
+  card.querySelector('.dc-body-inner').innerHTML = buildFlexibleHtml(dayName);
   const pctEl = document.getElementById('pct_'+dayName);
   const barEl = document.getElementById('bar_'+dayName);
   if (pctEl) pctEl.textContent = '—';
   if (barEl) barEl.style.width = '0%';
 }
 
-// ─── Render days ───
+// ═══════════════════════════════════════════
+// RENDER DAYS LIST
+// ═══════════════════════════════════════════
 function renderDaysList() {
   const list = document.getElementById('daysList');
   list.innerHTML = '';
+
   DISPLAY_ORDER.forEach(dayIdx => {
     const dayName = DAYS[dayIdx];
-    const abbr = DAY_SHORT[dayIdx];
-    const baseType = DAY_TYPES[dayName] || 'descanso';
+    const abbr    = DAY_SHORT[dayIdx];
+    const baseType     = DAY_TYPES[dayName] || 'descanso';
     const effectiveType = getEffectiveType(dayName);
     const isToday = dayName === today;
     const { pct } = getDayProgress(dayName);
 
     const proto = effectiveType !== 'flexible' ? PROTOCOLS[effectiveType] : null;
-    const icon = proto ? proto.icon : '🔀';
+    const icon  = proto ? proto.icon  : '🔀';
     const label = proto ? proto.label : 'Elige tipo';
 
-    let bodyContent = '';
-    if (baseType === 'flexible') {
-      bodyContent = buildFlexibleHtml(dayName);
-    } else {
-      bodyContent = buildProtocolHtml(dayName, effectiveType);
-    }
+    const bodyContent = baseType === 'flexible'
+      ? buildFlexibleHtml(dayName)
+      : buildProtocolHtml(dayName, effectiveType);
+
+    const pctText = effectiveType === 'flexible' ? '—' : pct+'%';
 
     const card = document.createElement('div');
     card.className = `day-card type-${effectiveType}${isToday ? ' open' : ''}`;
     card.id = 'dc_'+dayName;
 
-    const todayPill = isToday ? `<span class="today-pill">HOY</span>` : '';
-    const pctText = pct > 0 ? pct+'%' : effectiveType === 'flexible' ? '—' : '0%';
-
     card.innerHTML = `
       <div class="dc-head" onclick="toggleDayCard('${dayName}')">
         <div class="dc-day-col">
-          <div class="dc-day-name">${abbr}${todayPill}</div>
+          <div class="dc-day-name">${abbr}${isToday ? '<span class="today-pill">HOY</span>' : ''}</div>
           <div class="dc-type-row">
             <span class="dc-icon">${icon}</span>
             <span class="dc-type-name">${label}</span>
@@ -637,7 +808,7 @@ function renderDaysList() {
         </div>
         <div class="dc-prog-col">
           <div class="dc-pct-num" id="pct_${dayName}">${pctText}</div>
-          <div class="dc-bar-wrap"><div class="dc-bar-fill" id="bar_${dayName}" style="width:${pct}%"></div></div>
+          <div class="dc-bar-wrap"><div class="dc-bar-fill" id="bar_${dayName}" style="width:${effectiveType==='flexible'?0:pct}%"></div></div>
         </div>
         <svg class="dc-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
       </div>
@@ -664,6 +835,8 @@ function updateCardProgress(dayName) {
   const { pct } = getDayProgress(dayName);
   const pctEl = document.getElementById('pct_'+dayName);
   const barEl = document.getElementById('bar_'+dayName);
+  const type  = getEffectiveType(dayName);
+  if (type === 'flexible') { if(pctEl) pctEl.textContent='—'; return; }
   if (pctEl) pctEl.textContent = pct+'%';
   if (barEl) barEl.style.width = pct+'%';
 }
@@ -677,52 +850,64 @@ function showTab(id, btn) {
   btn.classList.add('active');
 }
 
-// ─── Timer ───
+// ═══════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════
 let timerInterval = null;
-function formatTime(s) { const m=Math.floor(s/60),sec=s%60; return m>0?`${m}:${sec.toString().padStart(2,'0')}`:`0:${sec.toString().padStart(2,'0')}`; }
+function formatTime(s){ const m=Math.floor(s/60),sec=s%60; return m>0?`${m}:${sec.toString().padStart(2,'0')}`:`0:${sec.toString().padStart(2,'0')}`; }
 function startTimer(seconds, label) {
   if (timerInterval) clearInterval(timerInterval);
-  let t=seconds;
-  const overlay=document.getElementById('timerOverlay'), display=document.getElementById('timerDisplay');
+  let t = seconds;
+  const overlay = document.getElementById('timerOverlay');
+  const display = document.getElementById('timerDisplay');
   overlay.classList.add('active');
-  document.getElementById('timerLabel').textContent=label||formatTime(seconds);
-  display.textContent=formatTime(t); display.style.color='var(--accent)';
-  timerInterval=setInterval(()=>{
-    t--; display.textContent=formatTime(t);
-    if(t<=0){ clearInterval(timerInterval); display.textContent='✓ LISTO'; display.style.color='var(--green)';
-      setTimeout(()=>{ overlay.classList.remove('active'); display.style.color='var(--accent)'; },2500); }
-  },1000);
+  document.getElementById('timerLabel').textContent = label || formatTime(seconds);
+  display.textContent = formatTime(t);
+  display.style.color = 'var(--accent)';
+  timerInterval = setInterval(()=>{
+    t--; display.textContent = formatTime(t);
+    if (t<=0) {
+      clearInterval(timerInterval);
+      display.textContent = '✓ LISTO';
+      display.style.color = 'var(--green)';
+      setTimeout(()=>{ overlay.classList.remove('active'); display.style.color='var(--accent)'; }, 2500);
+    }
+  }, 1000);
 }
 function stopTimer() { clearInterval(timerInterval); document.getElementById('timerOverlay').classList.remove('active'); }
 
-// ─── Gym ───
+// ═══════════════════════════════════════════
+// GYM
+// ═══════════════════════════════════════════
 const LEVEL_COLOR = { 'Básico':'var(--green)', 'Intermedio':'var(--orange)', 'Avanzado':'var(--red)' };
 const GYM_EXERCISES = [
-  { id:'e1',  name:'Rotación externa con banda',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Codo pegado al cuerpo. Movimiento lento y controlado.', videoId:'rSCiaMp2K74', timers:[15,30] },
-  { id:'e2',  name:'Face Pull (técnica correcta)',     group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Lleva las manos a la cara/orejas. No uses impulso.', videoId:'GcMYpwXGrj8', timers:[15,30] },
-  { id:'e3',  name:'Y-T-W en banco',                  group:'Hombro — Activación',  sets:'2×12',     level:'Básico',     source:'Squat University', tip:'Peso muy ligero. Activa trapecio bajo y romboides.', videoId:'2B2LWHlhqNA', timers:[] },
-  { id:'e4',  name:'Wall Slides',                     group:'Hombro — Activación',  sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Mantén contacto con la pared. No arquees la espalda.', videoId:'y8iA0lP8r3c', timers:[] },
-  { id:'e5',  name:'Isométricos de rotación externa', group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Presión constante contra banda o pared.', videoId:'R0J_aPs-Jgo', timers:[30,45] },
-  { id:'e6',  name:'Plancha con toque de hombro',     group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'E3 Rehab',         tip:'Evita rotación de cadera.', videoId:'LY0Gm3L6QIs', timers:[30,45] },
-  { id:'e7',  name:'Suitcase Carry',                  group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'Squat University', tip:'Mantén el torso recto. No te inclines.', videoId:'4Xg7s7vH3bY', timers:[30,45] },
-  { id:'e8',  name:'Remo con mancuerna',              group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Retracción escapular al final.', videoId:'pYcpY20QaE8', timers:[] },
-  { id:'e9',  name:'Elevaciones laterales',           group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Peso ligero. Control total.', videoId:'3VcKaXpzqRo', timers:[] },
-  { id:'e10', name:'Press con mancuernas (neutral)',  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Bob & Brad',       tip:'Solo si no hay dolor.', videoId:'B-aVuyhvLHU', timers:[] },
-  { id:'e11', name:'Landmine Press',                  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Squat University', tip:'Movimiento en diagonal más seguro.', videoId:'3u6Yh3f5c8w', timers:[] },
-  { id:'e12', name:'Rotación externa excéntrica',     group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'4 segundos en la bajada.', videoId:'H6l0GJZ4r0k', timers:[] },
-  { id:'e13', name:'Elevación excéntrica',            group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'Sube con dos brazos, baja con uno.', videoId:'Z2k1s9v2k6U', timers:[] },
-  { id:'e14', name:'Side-Lying External Rotation',   group:'Hombro — Excéntricos', sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Movimiento lento, sin impulso.', videoId:'6u8QpNmQy_g', timers:[] },
-  { id:'e15', name:'Dead Bug',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Zona lumbar siempre pegada al suelo.', videoId:'4XLEnwUr1d8', timers:[] },
-  { id:'e16', name:'Bird Dog',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Pausa arriba 2 seg.', videoId:'wiFNA3sqjCA', timers:[] },
-  { id:'e17', name:'Plancha lateral',                 group:'Core — Base',          sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Cuerpo en línea recta.', videoId:'_rdfjFSFKcM', timers:[30,45] },
-  { id:'e18', name:'Pallof Press Hold',               group:'Core — Anti-Rotación', sets:'3×20 seg', level:'Básico',     source:'E3 Rehab',         tip:'Resiste la rotación.', videoId:'AH_QZLm_0-s', timers:[20,30] },
+  { id:'e1',  name:'Rotación externa con banda',      group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Codo pegado al cuerpo. Movimiento lento y controlado.',  videoId:'rSCiaMp2K74', timers:[15,30] },
+  { id:'e2',  name:'Face Pull (técnica correcta)',     group:'Hombro — Activación',  sets:'3×15',     level:'Básico',     source:'E3 Rehab',         tip:'Lleva las manos a la cara/orejas. No uses impulso.',     videoId:'GcMYpwXGrj8', timers:[15,30] },
+  { id:'e3',  name:'Y-T-W en banco',                  group:'Hombro — Activación',  sets:'2×12',     level:'Básico',     source:'Squat University', tip:'Peso muy ligero. Activa trapecio bajo y romboides.',     videoId:'2B2LWHlhqNA', timers:[] },
+  { id:'e4',  name:'Wall Slides',                     group:'Hombro — Activación',  sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Mantén contacto con la pared. No arquees la espalda.',   videoId:'y8iA0lP8r3c', timers:[] },
+  { id:'e5',  name:'Isométricos de rotación externa', group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Presión constante contra banda o pared.',                videoId:'R0J_aPs-Jgo', timers:[30,45] },
+  { id:'e6',  name:'Plancha con toque de hombro',     group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'E3 Rehab',         tip:'Evita rotación de cadera.',                              videoId:'LY0Gm3L6QIs', timers:[30,45] },
+  { id:'e7',  name:'Suitcase Carry',                  group:'Hombro — Estabilidad', sets:'3×30 seg', level:'Intermedio', source:'Squat University', tip:'Mantén el torso recto. No te inclines.',                 videoId:'4Xg7s7vH3bY', timers:[30,45] },
+  { id:'e8',  name:'Remo con mancuerna',              group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Retracción escapular al final.',                         videoId:'pYcpY20QaE8', timers:[] },
+  { id:'e9',  name:'Elevaciones laterales',           group:'Hombro — Fuerza',      sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Peso ligero. Control total.',                            videoId:'3VcKaXpzqRo', timers:[] },
+  { id:'e10', name:'Press con mancuernas (neutral)',  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Bob & Brad',       tip:'Solo si no hay dolor.',                                  videoId:'B-aVuyhvLHU', timers:[] },
+  { id:'e11', name:'Landmine Press',                  group:'Hombro — Fuerza',      sets:'3×10',     level:'Intermedio', source:'Squat University', tip:'Movimiento en diagonal más seguro.',                     videoId:'3u6Yh3f5c8w', timers:[] },
+  { id:'e12', name:'Rotación externa excéntrica',     group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'4 segundos en la bajada.',                               videoId:'H6l0GJZ4r0k', timers:[] },
+  { id:'e13', name:'Elevación excéntrica',            group:'Hombro — Excéntricos', sets:'3×10',     level:'Intermedio', source:'E3 Rehab',         tip:'Sube con dos brazos, baja con uno.',                     videoId:'Z2k1s9v2k6U', timers:[] },
+  { id:'e14', name:'Side-Lying External Rotation',   group:'Hombro — Excéntricos', sets:'3×12',     level:'Básico',     source:'E3 Rehab',         tip:'Movimiento lento, sin impulso.',                         videoId:'6u8QpNmQy_g', timers:[] },
+  { id:'e15', name:'Dead Bug',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Zona lumbar siempre pegada al suelo.',                   videoId:'4XLEnwUr1d8', timers:[] },
+  { id:'e16', name:'Bird Dog',                        group:'Core — Base',          sets:'3×10',     level:'Básico',     source:'E3 Rehab',         tip:'Pausa arriba 2 seg.',                                    videoId:'wiFNA3sqjCA', timers:[] },
+  { id:'e17', name:'Plancha lateral',                 group:'Core — Base',          sets:'3×30 seg', level:'Básico',     source:'E3 Rehab',         tip:'Cuerpo en línea recta.',                                 videoId:'_rdfjFSFKcM', timers:[30,45] },
+  { id:'e18', name:'Pallof Press Hold',               group:'Core — Anti-Rotación', sets:'3×20 seg', level:'Básico',     source:'E3 Rehab',         tip:'Resiste la rotación.',                                   videoId:'AH_QZLm_0-s', timers:[20,30] },
 ];
 
 function renderGym() {
   const list = document.getElementById('gymList');
   list.innerHTML = '';
   let lastGroup = '';
-  const saved = JSON.parse(localStorage.getItem('gym_'+today)||'{}');
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(gymKey(WEEK_KEY, today))||'{}'); } catch(e){}
+
   GYM_EXERCISES.forEach(ex => {
     if (ex.group !== lastGroup) {
       lastGroup = ex.group;
@@ -732,11 +917,11 @@ function renderGym() {
       lbl.textContent = ex.group;
       list.appendChild(lbl);
     }
-    const done = saved[ex.id]||false;
+    const done = saved[ex.id] || false;
     const card = document.createElement('div');
     card.className = 'exercise-card'+(done?' done':'');
     card.id = 'card_'+ex.id;
-    const lvlColor = LEVEL_COLOR[ex.level]||'var(--muted)';
+    const lvlColor = LEVEL_COLOR[ex.level] || 'var(--muted)';
     const timersHtml = ex.timers.length
       ? `<div class="ex-timer-row">${ex.timers.map(t=>`<button class="timer-pill" onclick="startTimer(${t},'${formatTime(t)}')">⏱ ${formatTime(t)}</button>`).join('')}</div>`
       : '';
@@ -771,18 +956,26 @@ function renderGym() {
 }
 
 function loadVideo(id, videoId) {
-  document.getElementById('vwrap_'+id).innerHTML=`<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;
+  document.getElementById('vwrap_'+id).innerHTML =
+    `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;
 }
 function toggleExCard(id) { document.getElementById('card_'+id).classList.toggle('open'); }
 function toggleGymDone(id) {
-  const saved=JSON.parse(localStorage.getItem('gym_'+today)||'{}');
-  saved[id]=!saved[id];
-  localStorage.setItem('gym_'+today,JSON.stringify(saved));
-  const card=document.getElementById('card_'+id), btn=document.getElementById('doneBtn_'+id);
-  if(saved[id]){card.classList.add('done');btn.textContent='✓ COMPLETADO';}
-  else{card.classList.remove('done');btn.textContent='MARCAR LISTO';}
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(gymKey(WEEK_KEY,today))||'{}'); } catch(e){}
+  saved[id] = !saved[id];
+  localStorage.setItem(gymKey(WEEK_KEY,today), JSON.stringify(saved));
+  const card = document.getElementById('card_'+id);
+  const btn  = document.getElementById('doneBtn_'+id);
+  if (saved[id]) { card.classList.add('done');    btn.textContent = '✓ COMPLETADO'; }
+  else           { card.classList.remove('done'); btn.textContent = 'MARCAR LISTO'; }
 }
 
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+pruneOldWeeks();
+buildWeekSummary();
 renderDaysList();
 renderGym();
 </script>
