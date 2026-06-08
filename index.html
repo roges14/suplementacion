@@ -58,6 +58,12 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-
 .ws-day-dot.flex-day{background:rgba(46,213,115,0.08);color:var(--green);border:1px solid rgba(46,213,115,0.2);}
 .ws-dismiss{width:100%;padding:8px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .ws-dismiss:hover{border-color:rgba(255,255,255,0.2);color:var(--text);}
+.ws-motiv{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--text);margin-bottom:12px;padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:2px solid var(--accent);}
+.ws-empty{border-color:rgba(255,255,255,0.07) !important;background:rgba(255,255,255,0.02) !important;}
+.ws-empty::before{background:rgba(255,255,255,0.06) !important;}
+.ws-empty-body{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 0;margin-bottom:12px;}
+.ws-empty-icon{font-size:28px;opacity:0.4;}
+.ws-empty-msg{font-size:12px;color:var(--muted);text-align:center;line-height:1.6;}
 
 /* ═══ DAY CARDS ═══ */
 .days-list{display:flex;flex-direction:column;gap:8px;}
@@ -553,60 +559,80 @@ function getDayProgress(dayName, weekKey) {
 // ═══════════════════════════════════════════
 function buildWeekSummary() {
   const wrap = document.getElementById('weekSummaryWrap');
-  // Ya fue descartado
-  if (localStorage.getItem(summaryDismissKey(PREV_WEEK_KEY)) === '1') return;
 
-  // Verificar si hay datos de la semana anterior
+  // Número de semana legible
+  const prevDate = new Date(now); prevDate.setDate(prevDate.getDate() - 7);
+  const weekLabel = prevDate.toLocaleDateString('es-MX',{month:'short',day:'numeric'});
+  const weekNum   = PREV_WEEK_KEY.split('_w')[1];
+
+  // ── Verificar si hay datos reales ──
   let hasData = false;
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
     if (k && k.startsWith('supp_'+PREV_WEEK_KEY)) { hasData = true; break; }
   }
-  if (!hasData) return;
 
-  // Calcular stats
+  // ── Estado vacío: se muestra siempre, pero sin datos ──
+  if (!hasData) {
+    wrap.innerHTML = `
+      <div class="week-summary ws-empty" id="weekSummaryCard">
+        <div class="ws-header">
+          <span class="ws-title">📊 Semana anterior</span>
+          <span class="ws-week">semana ${weekNum} · desde ${weekLabel}</span>
+        </div>
+        <div class="ws-empty-body">
+          <div class="ws-empty-icon">📭</div>
+          <div class="ws-empty-msg">Aún no hay historial registrado.<br>Completa días esta semana y aquí verás tu resumen el lunes.</div>
+        </div>
+        <div class="ws-days-row">
+          ${DISPLAY_ORDER.map(i=>`<div class="ws-day-dot empty">${DAY_SHORT[i]}</div>`).join('')}
+        </div>
+      </div>`;
+    return;
+  }
+
+  // Ya fue descartado después de ver datos reales
+  if (localStorage.getItem(summaryDismissKey(PREV_WEEK_KEY)) === '1') return;
+
+  // ── Calcular stats ──
   let perfectDays = 0, totalCreatine = 0, senderismoDays = 0;
   const dayDots = [];
 
   DISPLAY_ORDER.forEach(dayIdx => {
-    const dayName = DAYS[dayIdx];
-    const { done, total, pct } = getDayProgress(dayName, PREV_WEEK_KEY);
+    const dayName  = DAYS[dayIdx];
+    const { total, pct } = getDayProgress(dayName, PREV_WEEK_KEY);
     const flexType = localStorage.getItem(flexKey(PREV_WEEK_KEY, dayName));
     const baseType = DAY_TYPES[dayName];
 
-    // Creatina streak — buscar en state
     let state = {};
     try { state = JSON.parse(localStorage.getItem(suppKey(PREV_WEEK_KEY, dayName))||'{}'); } catch(e){}
     const hasCreatine = Object.keys(state).some(k => k.includes('_cre') && state[k]);
     if (hasCreatine) totalCreatine++;
-
     if (baseType === 'flexible' && flexType === 'senderismo') senderismoDays++;
     if (total > 0 && pct === 100) perfectDays++;
 
-    // Dot
-    let dotClass = 'empty', dotLabel = DAY_SHORT[dayIdx];
-    if (total === 0) dotClass = 'empty';
-    else if (pct === 100) dotClass = 'full';
-    else if (pct > 0)     dotClass = 'partial';
-    if (baseType === 'flexible' && (flexType === 'senderismo')) dotClass += ' flex-day';
-
-    dayDots.push({ label: dotLabel, cls: dotClass, pct });
+    let dotClass = total === 0 ? 'empty' : pct === 100 ? 'full' : pct > 0 ? 'partial' : 'empty';
+    if (baseType === 'flexible' && flexType === 'senderismo') dotClass += ' flex-day';
+    dayDots.push({ label: DAY_SHORT[dayIdx], cls: dotClass, pct });
   });
 
   const dotsHtml = dayDots.map(d =>
     `<div class="ws-day-dot ${d.cls}" title="${d.pct}%">${d.label}</div>`
   ).join('');
 
-  // Número de semana legible
-  const prevDate = new Date(now); prevDate.setDate(prevDate.getDate() - 7);
-  const weekLabel = prevDate.toLocaleDateString('es-MX',{month:'short',day:'numeric'});
+  // Mensaje motivacional según performance
+  const motivMsg = perfectDays >= 5 ? '🔥 Semana élite — consistencia total'
+                 : perfectDays >= 3 ? '💪 Buena semana — sigue el ritmo'
+                 : totalCreatine >= 6 ? '✔ Creatina sólida — la base no falló'
+                 : '📈 Esta semana supérala';
 
   wrap.innerHTML = `
     <div class="week-summary" id="weekSummaryCard">
       <div class="ws-header">
         <span class="ws-title">📊 Semana anterior</span>
-        <span class="ws-week">semana ${PREV_WEEK_KEY.split('_w')[1]} · desde ${weekLabel}</span>
+        <span class="ws-week">semana ${weekNum} · desde ${weekLabel}</span>
       </div>
+      <div class="ws-motiv">${motivMsg}</div>
       <div class="ws-stats">
         <div class="ws-stat">
           <div class="ws-stat-num perfect">${perfectDays}</div>
